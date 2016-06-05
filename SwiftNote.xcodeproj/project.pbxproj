@@ -12,6 +12,7 @@
 		7BF46A561D0405E300AA1EF8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7BF46A551D0405E300AA1EF8 /* Assets.xcassets */; };
 		7BF46A591D0405E300AA1EF8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7BF46A571D0405E300AA1EF8 /* LaunchScreen.storyboard */; };
 		7BF46A631D0409E700AA1EF8 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 7BF46A621D0409E700AA1EF8 /* .gitignore */; };
+		7BF46A651D041E7C00AA1EF8 /* NoteCellTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BF46A641D041E7C00AA1EF8 /* NoteCellTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +23,7 @@
 		7BF46A581D0405E300AA1EF8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		7BF46A5A1D0405E300AA1EF8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7BF46A621D0409E700AA1EF8 /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
+		7BF46A641D041E7C00AA1EF8 /* NoteCellTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NoteCellTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,6 +59,7 @@
 			children = (
 				7BF46A4E1D0405E300AA1EF8 /* AppDelegate.swift */,
 				7BF46A501D0405E300AA1EF8 /* MainViewController.swift */,
+				7BF46A641D041E7C00AA1EF8 /* NoteCellTableViewCell.swift */,
 				7BF46A551D0405E300AA1EF8 /* Assets.xcassets */,
 				7BF46A571D0405E300AA1EF8 /* LaunchScreen.storyboard */,
 				7BF46A5A1D0405E300AA1EF8 /* Info.plist */,
@@ -135,6 +138,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7BF46A651D041E7C00AA1EF8 /* NoteCellTableViewCell.swift in Sources */,
 				7BF46A511D0405E300AA1EF8 /* MainViewController.swift in Sources */,
 				7BF46A4F1D0405E300AA1EF8 /* AppDelegate.swift in Sources */,
 			);

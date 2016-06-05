@@ -14,7 +14,17 @@ class MainViewController: UITableViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
+        navigationItem.title = "SwiftNote"
         
+        tableView.registerClass(NoteCellTableViewCell.self, forCellReuseIdentifier: "cellId")
+    }
+    
+    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 5
+    }
+    
+    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        return tableView.dequeueReusableCellWithIdentifier("cellId", forIndexPath: indexPath)
     }
 }
 
