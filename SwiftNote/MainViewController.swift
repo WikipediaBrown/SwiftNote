@@ -17,6 +17,9 @@ class MainViewController: UITableViewController {
         navigationItem.title = "SwiftNote"
         
         tableView.registerClass(NoteCellTableViewCell.self, forCellReuseIdentifier: "cellId")
+        tableView.registerClass(CollectionHeader.self, forHeaderFooterViewReuseIdentifier: "headerId")
+        
+        tableView.sectionHeaderHeight = 50
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -25,6 +28,10 @@ class MainViewController: UITableViewController {
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         return tableView.dequeueReusableCellWithIdentifier("cellId", forIndexPath: indexPath)
+    }
+    
+    override func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        return tableView.dequeueReusableHeaderFooterViewWithIdentifier("headerId")
     }
 }
 
