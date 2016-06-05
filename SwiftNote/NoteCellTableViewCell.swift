@@ -9,6 +9,8 @@
 import UIKit
 
 class NoteCellTableViewCell: UITableViewCell {
+    
+    var mainViewController: MainViewController?
 
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: "cellid")
@@ -30,7 +32,7 @@ class NoteCellTableViewCell: UITableViewCell {
     
     let actionButton: UIButton = {
         let button = UIButton(type: .System)
-        button.setTitle("Action", forState: .Normal)
+        button.setTitle("Delete", forState: .Normal)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
         
@@ -40,10 +42,17 @@ class NoteCellTableViewCell: UITableViewCell {
         addSubview(noteLabel)
         addSubview(actionButton)
         
+        actionButton.addTarget(self, action: #selector(NoteCellTableViewCell.handleAction), forControlEvents: .TouchUpInside)
+        
         addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-16-[v0]-8-[v1(80)]-8-|", options: NSLayoutFormatOptions(), metrics: nil, views: ["v0": noteLabel, "v1": actionButton]))
         
         addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|[v0]|", options: NSLayoutFormatOptions(), metrics: nil, views: ["v0": noteLabel]))
         
         addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|[v0]|", options: NSLayoutFormatOptions(), metrics: nil, views: ["v0": actionButton]))
+    }
+    
+    func handleAction() {
+        mainViewController?.deleteCell(self)
+        
     }
 }

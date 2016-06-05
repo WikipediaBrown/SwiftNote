@@ -9,6 +9,8 @@
 import UIKit
 
 class MainViewController: UITableViewController {
+    
+    var notes = ["Jiggaboo", "Coon", "Darky"]
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,15 +25,27 @@ class MainViewController: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+        return notes.count
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        return tableView.dequeueReusableCellWithIdentifier("cellId", forIndexPath: indexPath)
+        let noteCell = tableView.dequeueReusableCellWithIdentifier("cellId", forIndexPath: indexPath) as! NoteCellTableViewCell
+        noteCell.noteLabel.text = notes[indexPath.row]
+        noteCell.mainViewController = self
+        return noteCell
     }
     
     override func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         return tableView.dequeueReusableHeaderFooterViewWithIdentifier("headerId")
+    }
+    
+    func deleteCell(cell: UITableViewCell) {
+        if let deleteionPath = tableView.indexPathForCell(cell) {
+            notes.removeAtIndex(deleteionPath.row)
+            tableView.deleteRowsAtIndexPaths([deleteionPath], withRowAnimation: .Automatic)
+        
+        }
+        
     }
 }
 
