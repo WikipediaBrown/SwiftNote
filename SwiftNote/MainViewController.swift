@@ -10,7 +10,7 @@ import UIKit
 
 class MainViewController: UITableViewController {
     
-    var notes = ["Jiggaboo", "Coon", "Darky"]
+    var notes = ["snap", "crackle", "pop"]
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,6 +22,10 @@ class MainViewController: UITableViewController {
         tableView.registerClass(CollectionHeader.self, forHeaderFooterViewReuseIdentifier: "headerId")
         
         tableView.sectionHeaderHeight = 50
+        
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Create Note", style: .Plain, target: self, action: #selector(MainViewController.insertCell))
+        
+        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Batch", style: .Plain, target: self, action: #selector(MainViewController.insertCell))
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -45,6 +49,14 @@ class MainViewController: UITableViewController {
             tableView.deleteRowsAtIndexPaths([deleteionPath], withRowAnimation: .Automatic)
         
         }
+        
+    }
+        
+    func insertCell() {
+        notes.append("joke note \(notes.count + 1)")
+        let insertionIndexPath = NSIndexPath(forRow: notes.count - 1, inSection: 0)
+
+        tableView.insertRowsAtIndexPaths([insertionIndexPath], withRowAnimation: .Automatic)
         
     }
 }
