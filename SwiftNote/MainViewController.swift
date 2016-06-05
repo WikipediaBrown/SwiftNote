@@ -25,7 +25,7 @@ class MainViewController: UITableViewController {
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Create Note", style: .Plain, target: self, action: #selector(MainViewController.insertCell))
         
-        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Batch", style: .Plain, target: self, action: #selector(MainViewController.insertCell))
+        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Batch Insert", style: .Plain, target: self, action: #selector(MainViewController.insertBatch))
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -50,6 +50,28 @@ class MainViewController: UITableViewController {
         
         }
         
+    }
+    
+    func insertBatch() {
+        var indexPaths = [NSIndexPath]()
+        for i in notes.count...notes.count + 5 {
+            notes.append("Note \(i + 1)")
+            indexPaths.append(NSIndexPath(forRow: i, inSection: 0))
+            
+        }
+        
+        var bottomHalfIndexPaths = [NSIndexPath]()
+        for _ in 0...indexPaths.count / 2 - 1 {
+            bottomHalfIndexPaths.append(indexPaths.removeLast())
+        }
+        
+        tableView.beginUpdates()
+        
+        tableView.insertRowsAtIndexPaths(indexPaths, withRowAnimation: .Right)
+        tableView.insertRowsAtIndexPaths(bottomHalfIndexPaths, withRowAnimation: .Left)
+        
+        tableView.endUpdates()
+    
     }
         
     func insertCell() {
