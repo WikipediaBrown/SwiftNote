@@ -14,6 +14,7 @@
 		7BF46A631D0409E700AA1EF8 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 7BF46A621D0409E700AA1EF8 /* .gitignore */; };
 		7BF46A651D041E7C00AA1EF8 /* NoteCellTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BF46A641D041E7C00AA1EF8 /* NoteCellTableViewCell.swift */; };
 		7BF46A671D042CC800AA1EF8 /* CollectionHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BF46A661D042CC800AA1EF8 /* CollectionHeader.swift */; };
+		7BF46A691D04D1B700AA1EF8 /* MakeNoteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BF46A681D04D1B600AA1EF8 /* MakeNoteViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		7BF46A621D0409E700AA1EF8 /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		7BF46A641D041E7C00AA1EF8 /* NoteCellTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NoteCellTableViewCell.swift; sourceTree = "<group>"; };
 		7BF46A661D042CC800AA1EF8 /* CollectionHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionHeader.swift; sourceTree = "<group>"; };
+		7BF46A681D04D1B600AA1EF8 /* MakeNoteViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MakeNoteViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,6 +63,7 @@
 			children = (
 				7BF46A4E1D0405E300AA1EF8 /* AppDelegate.swift */,
 				7BF46A501D0405E300AA1EF8 /* MainViewController.swift */,
+				7BF46A681D04D1B600AA1EF8 /* MakeNoteViewController.swift */,
 				7BF46A641D041E7C00AA1EF8 /* NoteCellTableViewCell.swift */,
 				7BF46A661D042CC800AA1EF8 /* CollectionHeader.swift */,
 				7BF46A551D0405E300AA1EF8 /* Assets.xcassets */,
@@ -142,6 +145,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7BF46A671D042CC800AA1EF8 /* CollectionHeader.swift in Sources */,
+				7BF46A691D04D1B700AA1EF8 /* MakeNoteViewController.swift in Sources */,
 				7BF46A651D041E7C00AA1EF8 /* NoteCellTableViewCell.swift in Sources */,
 				7BF46A511D0405E300AA1EF8 /* MainViewController.swift in Sources */,
 				7BF46A4F1D0405E300AA1EF8 /* AppDelegate.swift in Sources */,

@@ -75,10 +75,10 @@ class MainViewController: UITableViewController {
     }
         
     func insertCell() {
-        notes.append("joke note \(notes.count + 1)")
-        let insertionIndexPath = NSIndexPath(forRow: notes.count - 1, inSection: 0)
-
-        tableView.insertRowsAtIndexPaths([insertionIndexPath], withRowAnimation: .Automatic)
+        
+        let yourTargetController = MakeNoteViewController()
+        yourTargetController.modalPresentationStyle = .OverCurrentContext
+        self.presentViewController(yourTargetController, animated: true, completion: nil)
         
     }
 }
