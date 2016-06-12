@@ -8,7 +8,9 @@
 
 import UIKit
 
-class MakeNoteViewController: UIViewController, UINavigationBarDelegate {
+class MakeNoteViewController: UIViewController, UINavigationBarDelegate, UITextViewDelegate {
+    
+    var note = ""
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,7 +27,7 @@ class MakeNoteViewController: UIViewController, UINavigationBarDelegate {
     func setupNavBar() {
         
         //Add UINavigation Bar
-        let navBar: UINavigationBar = UINavigationBar(frame: CGRectMake(0, 0, self.view.frame.size.width, 64))
+        let navBar: UINavigationBar = UINavigationBar(frame: CGRectMake(0, 0, self.view.frame.size.width, 44))
         let navBarItem = UINavigationItem()
         navBar.items = [navBarItem]
         navBar.delegate = self
@@ -34,62 +36,60 @@ class MakeNoteViewController: UIViewController, UINavigationBarDelegate {
         self.view.addSubview(navBar)
         
         //Add UINavigationItem Title and Prompt
+        navBarItem.prompt = "TTTT"
         navBarItem.title = "Jot Down Note"
-        navBarItem.prompt = ""
         
         //Add UINavigationItem Left Button ()
-        navBarItem.leftBarButtonItem = UIBarButtonItem(title: "", style:   UIBarButtonItemStyle.Plain, target: self, action: #selector(MakeNoteViewController.leftNavBarButton))
+        //navBarItem.leftBarButtonItem = UIBarButtonItem(title: "", style:   UIBarButtonItemStyle.Plain, target: self, action: #selector(MakeNoteViewController.leftNavBarButton))
         
         //Add UINavigationItem Right Button
-        navBarItem.rightBarButtonItem = UIBarButtonItem(title: "Save", style:   UIBarButtonItemStyle.Plain, target: self, action: #selector(MakeNoteViewController.rightNavBarButton))
+        navBarItem.rightBarButtonItem = UIBarButtonItem(title: "Exit", style:   UIBarButtonItemStyle.Plain, target: self, action: #selector(MakeNoteViewController.rightNavBarButton))
         
         //This is rudimentary Auto Layout Constraint code. I am still working on it.
-        /*
-         
         //navBar.translatesAutoresizingMaskIntoConstraints = false
 
         //Dictionary of Views with just the navBar
-        let viewsDictionary = ["navBar": navBar]
+        //let viewsDictionary = ["navBar": navBar]
         
         //Add navBar constraints
-        let navBarConstraintWidth = NSLayoutConstraint.constraintsWithVisualFormat("H:[navBar(44)]", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: viewsDictionary)
         
-        let navBarConstraintHeight = NSLayoutConstraint.constraintsWithVisualFormat("V:[navBar(44)]", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: viewsDictionary)
+        //self.view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:[navBar]", options: NSLayoutFormatOptions(), metrics: nil, views: viewsDictionary))
         
-        navBar.addConstraint(navBarConstraintWidth)
-        navBar.addConstraint(navBarConstraintHeight)
-        */
     }
-    
+    //This sets up the Text View
     func setupTextView() {
         
-        let textView=UITextView(/*frame:CGRectMake(20, 330, self.view.frame.width-40, 600)*/)
+        //Add Text View
+        let textView = UITextView()
         textView.scrollEnabled=true
         textView.becomeFirstResponder()
-        
-        textView.translatesAutoresizingMaskIntoConstraints = false
+        textView.delegate = self
         
         self.view.addSubview(textView)
         
-        let viewsDictionary = ["view": view, "textView": textView]
+        //Add Text View Constrainsts
+        let viewsDictionary = ["textView": textView]
+        textView.translatesAutoresizingMaskIntoConstraints = false
+
+        self.view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-20-[textView]-20-|", options: NSLayoutFormatOptions(), metrics: nil, views: viewsDictionary))
         
-        let horizontalConstraints = NSLayoutConstraint.constraintsWithVisualFormat("H:[view]-(<=0)-[textView(100)]", options: NSLayoutFormatOptions.AlignAllCenterY, metrics: nil, views: viewsDictionary)
-        
-        view.addConstraints(horizontalConstraints)
-        
-        let verticalConstraints = NSLayoutConstraint.constraintsWithVisualFormat("V:[view]-(<=0)-[textView(100)]", options: NSLayoutFormatOptions.AlignAllCenterX, metrics: nil, views: viewsDictionary)
-        
-        view.addConstraints(verticalConstraints)
+        self.view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-94-[textView]-20-|", options: NSLayoutFormatOptions(), metrics: nil, views: viewsDictionary))
     }
     
     //This method is called when the left navBar button is pressed.
-    func leftNavBarButton() {
-    
-    }
+    //func leftNavBarButton() {}
     
     //This method is called when the right navBar button is pressed.
     func rightNavBarButton() {
-        self.dismissViewControllerAnimated(false, completion: nil)
+        self.dismissViewControllerAnimated(true) { 
+            self.saveTextView()
+        }
+        
+    }
+    
+    func saveTextView() {
+        notes.append(note)
+        
     }
 
 }
