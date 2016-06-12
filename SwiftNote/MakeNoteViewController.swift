@@ -71,14 +71,15 @@ class MakeNoteViewController: UIViewController, UINavigationBarDelegate {
         
         self.view.addSubview(textView)
         
-        let viewsDictionary = ["textView": textView]
+        let viewsDictionary = ["view": view, "textView": textView]
         
-        let textViewConstraintWidth = NSLayoutConstraint.constraintsWithVisualFormat("H:[textView(44)]", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: viewsDictionary)
+        let horizontalConstraints = NSLayoutConstraint.constraintsWithVisualFormat("H:[view]-(<=0)-[textView(100)]", options: NSLayoutFormatOptions.AlignAllCenterY, metrics: nil, views: viewsDictionary)
         
-        let textViewConstraintHeight = NSLayoutConstraint.constraintsWithVisualFormat("V:[textView(44)]", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: viewsDictionary)
+        view.addConstraints(horizontalConstraints)
         
-        textView.addConstraint(textViewConstraintWidth)
-        textView.addConstraint(textViewConstraintHeight)
+        let verticalConstraints = NSLayoutConstraint.constraintsWithVisualFormat("V:[view]-(<=0)-[textView(100)]", options: NSLayoutFormatOptions.AlignAllCenterX, metrics: nil, views: viewsDictionary)
+        
+        view.addConstraints(verticalConstraints)
     }
     
     //This method is called when the left navBar button is pressed.
