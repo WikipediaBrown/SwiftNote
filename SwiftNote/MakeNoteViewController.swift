@@ -17,7 +17,7 @@ class MakeNoteViewController: UIViewController, UINavigationBarDelegate {
         self.view.backgroundColor = UIColor.redColor()
         
         setupNavBar()
-        
+        setupTextView()
         
     }
     
@@ -26,13 +26,12 @@ class MakeNoteViewController: UIViewController, UINavigationBarDelegate {
         
         //Add UINavigation Bar
         let navBar: UINavigationBar = UINavigationBar(frame: CGRectMake(0, 0, self.view.frame.size.width, 64))
-        //navBar.translatesAutoresizingMaskIntoConstraints = false
         let navBarItem = UINavigationItem()
         navBar.items = [navBarItem]
         navBar.delegate = self
+        navBar.barTintColor = UIColor.greenColor()
+
         self.view.addSubview(navBar)
-        
-        navBar.backgroundColor = UIColor.grayColor()
         
         //Add UINavigationItem Title and Prompt
         navBarItem.title = "Jot Down Note"
@@ -44,7 +43,11 @@ class MakeNoteViewController: UIViewController, UINavigationBarDelegate {
         //Add UINavigationItem Right Button
         navBarItem.rightBarButtonItem = UIBarButtonItem(title: "Save", style:   UIBarButtonItemStyle.Plain, target: self, action: #selector(MakeNoteViewController.rightNavBarButton))
         
+        //This is rudimentary Auto Layout Constraint code. I am still working on it.
         /*
+         
+        //navBar.translatesAutoresizingMaskIntoConstraints = false
+
         //Dictionary of Views with just the navBar
         let viewsDictionary = ["navBar": navBar]
         
@@ -56,6 +59,23 @@ class MakeNoteViewController: UIViewController, UINavigationBarDelegate {
         navBar.addConstraint(navBarConstraintWidth)
         navBar.addConstraint(navBarConstraintHeight)
         */
+    }
+    
+    func setupTextView() {
+        
+        let textView=UITextView(/*frame:CGRectMake(20, 330, self.view.frame.width-40, 600)*/)
+        textView.scrollEnabled=true
+        textView.becomeFirstResponder()
+        
+        textView.translatesAutoresizingMaskIntoConstraints = false
+        
+        self.view.addSubview(textView)
+        
+        let viewsDictionary = ["textView": textView]
+        
+        textView.addConstraint(NSLayoutConstraint.constraintsWithVisualFormat("H:[textView(44)]", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: viewsDictionary))
+        
+        textView.addConstraint(NSLayoutConstraint.constraintsWithVisualFormat("V:[textView(44)]", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: viewsDictionary))
     }
     
     //This method is called when the left navBar button is pressed.
