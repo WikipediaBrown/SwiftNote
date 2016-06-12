@@ -67,6 +67,8 @@ class MakeNoteViewController: UIViewController, UINavigationBarDelegate, UITextV
         
         self.view.addSubview(textView)
         
+        textView.text = note
+        
         //Add Text View Constrainsts
         let viewsDictionary = ["textView": textView]
         textView.translatesAutoresizingMaskIntoConstraints = false
