@@ -35,7 +35,7 @@ class MakeNoteViewController: UIViewController, UINavigationBarDelegate, UITextV
     //This sets up the Navigation Bar
     func setupViews() {
         
-        
+        /*
         let numberToolbar = UIToolbar(frame: CGRectMake(0, 0, self.view.frame.size.width, 50))
         numberToolbar.barStyle = UIBarStyle.Default
         numberToolbar.items = [
@@ -43,7 +43,8 @@ class MakeNoteViewController: UIViewController, UINavigationBarDelegate, UITextV
             UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.FlexibleSpace, target: nil, action: nil),
             UIBarButtonItem(title: "Done", style: UIBarButtonItemStyle.Plain, target: self, action: "doneWithNumberPad")]
         numberToolbar.sizeToFit()
-        //phonenumberTextField.inputAccessoryView = numberToolbar
+        phonenumberTextField.inputAccessoryView = numberToolbar
+        */
         
         
         //Add UINavigation Bar
@@ -89,8 +90,6 @@ class MakeNoteViewController: UIViewController, UINavigationBarDelegate, UITextV
 
         }
     }
-    
-    
     
     func addNote() {
     

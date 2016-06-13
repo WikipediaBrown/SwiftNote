@@ -28,16 +28,7 @@ class MainViewController: UITableViewController {
 
         
     }
-    
-    override func viewWillAppear(animated: Bool) {
-        tableView.reloadData()
-    }
-    
-    func reloadTableView() {
-    
-        tableView.reloadData()
-    }
-    
+
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return notes.count
     }
