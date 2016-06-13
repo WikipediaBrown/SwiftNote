@@ -32,7 +32,7 @@ class MakeNoteViewController: UIViewController, UINavigationBarDelegate, UITextV
     }()
     
     
-    //This sets up the Navigation Bar
+    //This sets up the Navigation Bar and the Text View
     func setupViews() {
         
         /*
@@ -94,6 +94,7 @@ class MakeNoteViewController: UIViewController, UINavigationBarDelegate, UITextV
     func addNote() {
     
         notes.append(newTextView.text)
+        NSNotificationCenter.defaultCenter().postNotificationName("reload", object: nil)
         
     }
 
