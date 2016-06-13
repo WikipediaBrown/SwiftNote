@@ -24,7 +24,18 @@ class MainViewController: UITableViewController {
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Create Note", style: .Plain, target: self, action: #selector(MainViewController.insertCell))
         
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Batch Insert", style: .Plain, target: self, action: #selector(MainViewController.insertBatch))
+        tableView.reloadData()
+
         
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        tableView.reloadData()
+    }
+    
+    func reloadTableView() {
+    
+        tableView.reloadData()
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -52,7 +63,7 @@ class MainViewController: UITableViewController {
     }
     
     func insertBatch() {
-        var indexPaths = [NSIndexPath]()
+        /*var indexPaths = [NSIndexPath]()
         for i in notes.count...notes.count + 5 {
             notes.append("Note \(i + 1)")
             indexPaths.append(NSIndexPath(forRow: i, inSection: 0))
@@ -69,8 +80,9 @@ class MainViewController: UITableViewController {
         tableView.insertRowsAtIndexPaths(indexPaths, withRowAnimation: .Right)
         tableView.insertRowsAtIndexPaths(bottomHalfIndexPaths, withRowAnimation: .Left)
         
-        tableView.endUpdates()
-    
+        tableView.endUpdates()*/
+
+        print(notes)
     }
         
     func insertCell() {
