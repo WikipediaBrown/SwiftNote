@@ -23,7 +23,7 @@ class NoteDetailViewController: MakeNoteViewController, UINavigationControllerDe
         
         
         let toolBar = UIToolbar()
-        toolBar.frame = CGRectMake(0, 0, self.view.frame.size.width, 44)
+        toolBar.frame = CGRectMake(0, 500, self.view.frame.size.width, 44)
         toolBar.items = []
         
         

@@ -17,6 +17,7 @@ class MakeNoteViewController: UIViewController, UINavigationBarDelegate, UITextV
         self.view.backgroundColor = UIColor.purpleColor()
         
         setupViews()
+        setupNavBar()
         
     }
     
@@ -31,9 +32,8 @@ class MakeNoteViewController: UIViewController, UINavigationBarDelegate, UITextV
         
     }()
     
-    //This sets up the Navigation Bar and the Text View
-    func setupViews() {
-
+    
+    func setupNavBar() {
         //Add UINavigation Bar
         let navBar: UINavigationBar = UINavigationBar(frame: CGRectMake(0, 0, self.view.frame.size.width, 44))
         let navBarItem = UINavigationItem()
@@ -50,8 +50,13 @@ class MakeNoteViewController: UIViewController, UINavigationBarDelegate, UITextV
         //Add UINavigationItem Right Button
         navBarItem.rightBarButtonItem = UIBarButtonItem(title: "Exit", style:   UIBarButtonItemStyle.Plain, target: self, action: #selector(MakeNoteViewController.rightNavBarButton))
         
-        //Add views
         self.view.addSubview(navBar)
+    }
+    
+    //This sets up the Navigation Bar and the Text View
+    func setupViews() {
+        
+        //Add views
         self.view.addSubview(newTextView)
         
         //Add Text View Constrainsts
@@ -60,9 +65,6 @@ class MakeNoteViewController: UIViewController, UINavigationBarDelegate, UITextV
         self.view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-20-[newTextView]-20-|", options: NSLayoutFormatOptions(), metrics: nil, views: viewsDictionary))
         
         self.view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-94-[newTextView]-20-|", options: NSLayoutFormatOptions(), metrics: nil, views: viewsDictionary))
-        
-        
-        
     }
     
     //This method is called when the left navBar button is pressed.
