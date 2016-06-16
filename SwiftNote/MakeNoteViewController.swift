@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MakeNoteViewController: UIViewController, UINavigationBarDelegate, UITextViewDelegate {
+class MakeNoteViewController: NoteTemplateViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,7 +20,7 @@ class MakeNoteViewController: UIViewController, UINavigationBarDelegate, UITextV
         setupNavBar()
         
     }
-    
+/*
     //Add Text View
     let newTextView: UITextView = {
         
@@ -31,8 +31,8 @@ class MakeNoteViewController: UIViewController, UINavigationBarDelegate, UITextV
         return textView
         
     }()
-    
-    
+*/
+/*
     func setupNavBar() {
         //Add UINavigation Bar
         let navBar: UINavigationBar = UINavigationBar(frame: CGRectMake(0, 0, self.view.frame.size.width, 44))
@@ -52,7 +52,8 @@ class MakeNoteViewController: UIViewController, UINavigationBarDelegate, UITextV
         
         self.view.addSubview(navBar)
     }
-    
+*/
+/*
     //This sets up the Navigation Bar and the Text View
     func setupViews() {
         
@@ -66,7 +67,7 @@ class MakeNoteViewController: UIViewController, UINavigationBarDelegate, UITextV
         
         self.view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-94-[newTextView]-20-|", options: NSLayoutFormatOptions(), metrics: nil, views: viewsDictionary))
     }
-    
+*/
     //This method is called when the left navBar button is pressed.
     //func leftNavBarButton() {}
     

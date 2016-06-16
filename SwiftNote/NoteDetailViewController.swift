@@ -8,7 +8,7 @@
 
 import UIKit
 
-class NoteDetailViewController: MakeNoteViewController, UINavigationControllerDelegate, UIToolbarDelegate {
+class NoteDetailViewController: NoteTemplateViewController, UINavigationControllerDelegate {
     
     var note: Int?
 
@@ -16,11 +16,11 @@ class NoteDetailViewController: MakeNoteViewController, UINavigationControllerDe
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        setupViews()
         newTextView.text = notes[note!]
         
         //var characterCount = newTextView.text.characters.count
         
+        setupViews()
         
         let toolBar = UIToolbar()
         toolBar.frame = CGRectMake(0, 500, self.view.frame.size.width, 44)
