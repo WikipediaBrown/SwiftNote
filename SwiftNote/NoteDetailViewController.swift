@@ -20,21 +20,15 @@ class NoteDetailViewController: NoteTemplateViewController, UINavigationControll
         
         //var characterCount = newTextView.text.characters.count
         
-        setupViews()
+        setupTextView()
         
         let toolBar = UIToolbar()
         toolBar.frame = CGRectMake(0, 500, self.view.frame.size.width, 44)
         toolBar.items = []
         
-        
-
         self.view.addSubview(toolBar)
         
         
     }
-
-    
-    
-    
 
 }

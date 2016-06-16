@@ -73,6 +73,7 @@
 				7BF24E0C1D0CED820096FD45 /* ColorPallette.swift */,
 				7BF46A4E1D0405E300AA1EF8 /* AppDelegate.swift */,
 				7BF46A501D0405E300AA1EF8 /* MainViewController.swift */,
+				7BF24E161D12727F0096FD45 /* NoteTemplateViewController.swift */,
 				7BF46A681D04D1B600AA1EF8 /* MakeNoteViewController.swift */,
 				7BF24E101D106D0F0096FD45 /* NoteDetailViewController.swift */,
 				7BF46A641D041E7C00AA1EF8 /* NoteCellTableViewCell.swift */,
@@ -80,7 +81,6 @@
 				7BF46A551D0405E300AA1EF8 /* Assets.xcassets */,
 				7BF46A571D0405E300AA1EF8 /* LaunchScreen.storyboard */,
 				7BF46A5A1D0405E300AA1EF8 /* Info.plist */,
-				7BF24E161D12727F0096FD45 /* NoteTemplateViewController.swift */,
 			);
 			path = SwiftNote;
 			sourceTree = "<group>";
