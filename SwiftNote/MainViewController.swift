@@ -46,6 +46,20 @@ class MainViewController: UITableViewController {
         return noteCell
     }
     
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        
+        print(notes[indexPath.row])
+        
+        let noteDetailViewController = NoteDetailViewController()
+        noteDetailViewController.note = indexPath.row
+        self.navigationController?.pushViewController(noteDetailViewController, animated: true)
+    }
+    
+    
+    
+    
+    
+    
     override func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         return tableView.dequeueReusableHeaderFooterViewWithIdentifier("headerId")
     }
@@ -60,33 +74,15 @@ class MainViewController: UITableViewController {
     }
     
     func insertBatch() {
-        /*var indexPaths = [NSIndexPath]()
-        for i in notes.count...notes.count + 5 {
-            notes.append("Note \(i + 1)")
-            indexPaths.append(NSIndexPath(forRow: i, inSection: 0))
-            
-        }
-        
-        var bottomHalfIndexPaths = [NSIndexPath]()
-        for _ in 0...indexPaths.count / 2 - 1 {
-            bottomHalfIndexPaths.append(indexPaths.removeLast())
-        }
-        
-        tableView.beginUpdates()
-        
-        tableView.insertRowsAtIndexPaths(indexPaths, withRowAnimation: .Right)
-        tableView.insertRowsAtIndexPaths(bottomHalfIndexPaths, withRowAnimation: .Left)
-        
-        tableView.endUpdates()*/
 
         print(notes)
     }
         
     func insertCell() {
         
-        let yourTargetController = MakeNoteViewController()
-        yourTargetController.modalPresentationStyle = .OverCurrentContext
-        self.presentViewController(yourTargetController, animated: true, completion: nil)
+        let makeNoteViewController = MakeNoteViewController()
+        makeNoteViewController.modalPresentationStyle = .OverCurrentContext
+        self.presentViewController(makeNoteViewController, animated: true, completion: nil)
         
     }
 }
