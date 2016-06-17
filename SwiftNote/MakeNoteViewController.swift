@@ -13,12 +13,7 @@ class MakeNoteViewController: NoteTemplateViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Sets background color
-        self.view.backgroundColor = UIColor.purpleColor()
-        
-        //setupViews()
         setupNavBar()
-        
     }
     
     // This method is called when the left navBar button is pressed.
@@ -34,7 +29,7 @@ class MakeNoteViewController: NoteTemplateViewController {
         }
     }
     
-    func addNote() {
+    public func addNote() {
         
         if newTextView.text != "" {
             notes.append(newTextView.text)

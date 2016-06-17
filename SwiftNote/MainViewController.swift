@@ -47,9 +47,7 @@ class MainViewController: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        
-        print(notes[indexPath.row])
-        
+                
         let noteDetailViewController = NoteDetailViewController()
         noteDetailViewController.note = indexPath.row
         self.navigationController?.pushViewController(noteDetailViewController, animated: true)

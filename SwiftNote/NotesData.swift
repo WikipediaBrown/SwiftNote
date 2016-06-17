@@ -10,9 +10,3 @@ import Foundation
 
 
     var notes = ["snap", "crackle", "pop", "great"]
-    
-    func addNote(note: String) {
-        
-        notes.append(note)
-    }
-

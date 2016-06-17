@@ -14,21 +14,17 @@ class NoteDetailViewController: NoteTemplateViewController, UINavigationControll
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
-        newTextView.text = notes[note!]
-        
-        //var characterCount = newTextView.text.characters.count
         
         setupTextView()
+        newTextView.text = notes[note!]
+    }
+    
+    func addNote() {
         
-        let toolBar = UIToolbar()
-        toolBar.frame = CGRectMake(0, 500, self.view.frame.size.width, 44)
-        toolBar.items = []
-        
-        self.view.addSubview(toolBar)
-        
-        
+        if newTextView.text != "" {
+            notes.append(newTextView.text)
+            NSNotificationCenter.defaultCenter().postNotificationName("reload", object: nil)
+        }
     }
 
 }
