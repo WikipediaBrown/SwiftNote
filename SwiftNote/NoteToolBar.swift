@@ -16,12 +16,10 @@ struct NoteToolBar {
         
         let spacer = UIBarButtonItem(barButtonSystemItem: .FlexibleSpace, target: nil, action: nil)
         
-        let newButton = UIBarButtonItem(title: "Save", style: UIBarButtonItemStyle.Plain, target: NoteTemplateViewController.self, action: #selector(NoteTemplateViewController.saveNote))
+        let newButton = UIBarButtonItem(title: "Save", style: UIBarButtonItemStyle.Plain, target: target, action: #selector(NoteTemplateViewController.saveNote))
         
         toolBar.items = [spacer, newButton]
         
         return toolBar
     }
-    
-    func test() {}
 }

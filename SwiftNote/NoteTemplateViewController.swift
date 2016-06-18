@@ -8,6 +8,8 @@
 
 import UIKit
 
+// This class is a template for making views to view the notes in (both creating notes and viewing/editing notes)
+//------------------------------------------------------------
 class NoteTemplateViewController: UIViewController, UINavigationBarDelegate, UITextViewDelegate, UIToolbarDelegate {
     
     // Called when view loads. Calls the setupTextView function and stops the view from automatically adjusting the textView insets.
@@ -18,7 +20,6 @@ class NoteTemplateViewController: UIViewController, UINavigationBarDelegate, UIT
         self.view.backgroundColor = UIColor.purpleColor()
         self.automaticallyAdjustsScrollViewInsets = false
         setupTextView()
-        
     }
 //------------------------------------------------------------
 
@@ -32,7 +33,6 @@ class NoteTemplateViewController: UIViewController, UINavigationBarDelegate, UIT
         textView.becomeFirstResponder()
         textView.translatesAutoresizingMaskIntoConstraints = false
         return textView
-        
     }()
 //------------------------------------------------------------
    
@@ -53,7 +53,6 @@ class NoteTemplateViewController: UIViewController, UINavigationBarDelegate, UIT
         self.view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-20-[newTextView]-20-|", options: NSLayoutFormatOptions(), metrics: nil, views: viewsDictionary))
         self.view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-94-[newTextView]-20-|", options: NSLayoutFormatOptions(), metrics: nil, views: viewsDictionary))
         //------------------------------------------------------------
-
     }
 //------------------------------------------------------------
     
@@ -89,10 +88,11 @@ class NoteTemplateViewController: UIViewController, UINavigationBarDelegate, UIT
         //------------------------------------------------------------
         self.view.addSubview(navBar)
         //------------------------------------------------------------
-        
     }
 //------------------------------------------------------------
     
+    // This adds the UIToolBar above the Keyboard and the functions for it's buttons
+//------------------------------------------------------------
     func textViewShouldBeginEditing(textView: UITextView) -> Bool {
         
         if newTextView.inputAccessoryView == nil {
@@ -104,9 +104,10 @@ class NoteTemplateViewController: UIViewController, UINavigationBarDelegate, UIT
     }
     
     func saveNote() {
+        print("This")
         
-        notes.append(newTextView.text)
-        NSNotificationCenter.defaultCenter().postNotificationName("reload", object: nil)
     }
+//------------------------------------------------------------
     
 }
+//------------------------------------------------------------

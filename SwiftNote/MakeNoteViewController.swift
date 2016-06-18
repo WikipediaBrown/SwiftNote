@@ -11,6 +11,7 @@ import UIKit
 class MakeNoteViewController: NoteTemplateViewController {
     
     override func viewDidLoad() {
+        
         super.viewDidLoad()
         
         setupNavBar()
@@ -21,17 +22,19 @@ class MakeNoteViewController: NoteTemplateViewController {
     
     // This method is called when the right navBar button is pressed.
     func rightNavBarButton() {
+        
         self.dismissViewControllerAnimated(true) {
             
             self.addNote()
-            
-            
         }
     }
     
-    public func addNote() {
+    
+    
+    func addNote() {
         
         if newTextView.text != "" {
+            
             notes.append(newTextView.text)
             NSNotificationCenter.defaultCenter().postNotificationName("reload", object: nil)
         }

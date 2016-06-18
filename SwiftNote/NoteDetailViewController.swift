@@ -18,13 +18,4 @@ class NoteDetailViewController: NoteTemplateViewController, UINavigationControll
         setupTextView()
         newTextView.text = notes[note!]
     }
-    
-    func addNote() {
-        
-        if newTextView.text != "" {
-            notes.append(newTextView.text)
-            NSNotificationCenter.defaultCenter().postNotificationName("reload", object: nil)
-        }
-    }
-
 }
