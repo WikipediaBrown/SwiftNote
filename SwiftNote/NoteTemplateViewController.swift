@@ -93,6 +93,9 @@ class NoteTemplateViewController: UIViewController, UINavigationBarDelegate, UIT
     
     // This adds the UIToolBar above the Keyboard and the functions for it's buttons
 //------------------------------------------------------------
+    
+    // This adds the UIToolBar
+    //------------------------------------------------------------
     func textViewShouldBeginEditing(textView: UITextView) -> Bool {
         
         if newTextView.inputAccessoryView == nil {
@@ -102,12 +105,14 @@ class NoteTemplateViewController: UIViewController, UINavigationBarDelegate, UIT
         
         return true
     }
-    
+    //------------------------------------------------------------
+
+    // This function is overridden by the subclassing view controller to provide different save methods
+    //------------------------------------------------------------
     func saveNote() {
-        print("This")
         
     }
-//------------------------------------------------------------
+    //------------------------------------------------------------
     
 }
 //------------------------------------------------------------

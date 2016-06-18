@@ -25,19 +25,19 @@ class MakeNoteViewController: NoteTemplateViewController {
         
         self.dismissViewControllerAnimated(true) {
             
-            self.addNote()
         }
     }
     
-    
-    
-    func addNote() {
+    override func saveNote() {
         
         if newTextView.text != "" {
             
             notes.append(newTextView.text)
             NSNotificationCenter.defaultCenter().postNotificationName("reload", object: nil)
         }
+        
+        self.dismissViewControllerAnimated(true) {
+            
+        }
     }
-    
 }
