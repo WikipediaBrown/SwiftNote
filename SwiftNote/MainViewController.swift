@@ -27,19 +27,22 @@ class MainViewController: UITableViewController {
         
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(MainViewController.reloadTableData(_:)), name: "reload", object: nil)
-
+        
         
     }
     
     func reloadTableData(notification: NSNotification) {
+        
         tableView.reloadData()
     }
-
+    
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        
         return notes.count
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        
         let noteCell = tableView.dequeueReusableCellWithIdentifier("cellId", forIndexPath: indexPath) as! NoteCellTableViewCell
         noteCell.noteLabel.text = notes[indexPath.row]
         noteCell.mainViewController = self
@@ -47,35 +50,54 @@ class MainViewController: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-                
+        
         let noteDetailViewController = NoteDetailViewController()
         noteDetailViewController.note = indexPath.row
         self.navigationController?.pushViewController(noteDetailViewController, animated: true)
     }
     
-    
-    
-    
-    
-    
     override func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        
         return tableView.dequeueReusableHeaderFooterViewWithIdentifier("headerId")
     }
+    
+//------------------------------------------------------------
+    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+        
+    }
+    
+    override func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]? {
+        
+        let swipeShare = UITableViewRowAction(style: .Normal, title: "Share") { (action: UITableViewRowAction, indexPath: NSIndexPath) in
+            
+            let noteToShare = notes[indexPath.row]
+            let activityViewController = UIActivityViewController(activityItems: [noteToShare], applicationActivities: nil)
+            self.presentViewController(activityViewController, animated: true, completion: nil)
+        }
+        let swipeDelete = UITableViewRowAction(style: .Default, title: "Delete") { (action: UITableViewRowAction, indexPath: NSIndexPath) in
+            
+            notes.removeAtIndex(indexPath.row)
+            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
+        }
+        swipeShare.backgroundColor = UIColor.blueColor()
+        return [swipeDelete, swipeShare]
+    }
+//------------------------------------------------------------
     
     func deleteCell(cell: UITableViewCell) {
         if let deleteionPath = tableView.indexPathForCell(cell) {
             notes.removeAtIndex(deleteionPath.row)
             tableView.deleteRowsAtIndexPaths([deleteionPath], withRowAnimation: .Automatic)
-        
+            
         }
         
     }
     
     func insertBatch() {
-
+        
         print(notes)
     }
-        
+    
     func insertCell() {
         
         let makeNoteViewController = MakeNoteViewController()
