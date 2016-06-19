@@ -9,44 +9,47 @@
 import UIKit
 import RealmSwift
 
+//------------------------------------------------------------
 class MainViewController: UITableViewController {
     
+    //------------------------------------------------------------
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
+        //------------------------------------------------------------
         try! realm.write {
             
             notes = realm.objects(noteData).sorted("lastEdited", ascending: false)
         }
-        
+        //------------------------------------------------------------
 
         
         navigationItem.title = "SwiftNote"
-        
+        //------------------------------------------------------------
         tableView.registerClass(NoteCellTableViewCell.self, forCellReuseIdentifier: "cellId")
         tableView.registerClass(CollectionHeader.self, forHeaderFooterViewReuseIdentifier: "headerId")
-        
         tableView.sectionHeaderHeight = 50
         
+        //------------------------------------------------------------
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Create Note", style: .Plain, target: self, action: #selector(MainViewController.insertCell))
-        
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Batch Insert", style: .Plain, target: self, action: #selector(MainViewController.insertBatch))
+        //------------------------------------------------------------
         
-        
+        //------------------------------------------------------------
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(MainViewController.reloadTableData(_:)), name: "reload", object: nil)
-        
+        //------------------------------------------------------------
         
     }
+    //------------------------------------------------------------
     
     
-    
-    override func viewWillAppear(animated: Bool) {
 
-        //tableView.reloadData()
-    }
-    
+    //------------------------------------------------------------
     func reloadTableData(notification: NSNotification) {
+        try! realm.write {
+            
+            notes = realm.objects(noteData).sorted("lastEdited", ascending: false)
+        }
         
         tableView.reloadData()
     }
@@ -127,6 +130,7 @@ class MainViewController: UITableViewController {
         }
         
     }
+    
     
     func insertCell() {
         

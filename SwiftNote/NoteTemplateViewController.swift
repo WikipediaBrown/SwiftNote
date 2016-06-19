@@ -12,6 +12,7 @@ import UIKit
 //------------------------------------------------------------
 class NoteTemplateViewController: UIViewController, UINavigationBarDelegate, UITextViewDelegate, UIToolbarDelegate {
     
+    
     // Called when view loads. Calls the setupTextView function and stops the view from automatically adjusting the textView insets.
 //------------------------------------------------------------
     override func viewDidLoad() {
@@ -20,9 +21,30 @@ class NoteTemplateViewController: UIViewController, UINavigationBarDelegate, UIT
         self.view.backgroundColor = UIColor.purpleColor()
         self.automaticallyAdjustsScrollViewInsets = false
         setupTextView()
+        
+        let notificationCenter = NSNotificationCenter.defaultCenter()
+        notificationCenter.addObserver(self, selector: #selector(adjustForKeyboard), name: UIKeyboardWillHideNotification, object: nil)
+        notificationCenter.addObserver(self, selector: #selector(adjustForKeyboard), name: UIKeyboardWillChangeFrameNotification, object: nil)
+        
+        
+        
+        self.view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.dismissKeyboard)))
+        self.newTextView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.dismissKeyboard)))
+        
     }
 //------------------------------------------------------------
-
+    
+    func dismissKeyboard() {
+    newTextView.resignFirstResponder()
+    
+    }
+    
+    
+   // override func viewWillDisappear(animated: Bool) {
+  //      NSNotificationCenter.defaultCenter().removeObserver(self, name: UIKeyboardWillShowNotification, object: self.view.window)
+  //      NSNotificationCenter.defaultCenter().removeObserver(self, name: UIKeyboardWillHideNotification, object: self.view.window)
+ //   }
+//
     
     // Creates UITextView
 //------------------------------------------------------------
@@ -51,7 +73,7 @@ class NoteTemplateViewController: UIViewController, UINavigationBarDelegate, UIT
         //------------------------------------------------------------
         let viewsDictionary = ["newTextView": newTextView]
         self.view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-20-[newTextView]-20-|", options: NSLayoutFormatOptions(), metrics: nil, views: viewsDictionary))
-        self.view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-94-[newTextView]-20-|", options: NSLayoutFormatOptions(), metrics: nil, views: viewsDictionary))
+        self.view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-67-[newTextView]-20-|", options: NSLayoutFormatOptions(), metrics: nil, views: viewsDictionary))
         //------------------------------------------------------------
     }
 //------------------------------------------------------------
@@ -120,6 +142,30 @@ class NoteTemplateViewController: UIViewController, UINavigationBarDelegate, UIT
     
     }
     //------------------------------------------------------------
+    
+    
+    
+    func adjustForKeyboard(notification: NSNotification) {
+        let userInfo = notification.userInfo!
+        
+        let keyboardScreenEndFrame = (userInfo[UIKeyboardFrameEndUserInfoKey] as! NSValue).CGRectValue()
+        let keyboardViewEndFrame = view.convertRect(keyboardScreenEndFrame, fromView: view.window)
+        
+        if notification.name == UIKeyboardWillHideNotification {
+            newTextView.contentInset = UIEdgeInsetsZero
+        } else {
+            newTextView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: keyboardViewEndFrame.height, right: 0)
+        }
+        
+        
+        //let selectedRange = newTextView.selectedRange
+        //newTextView.scrollRangeToVisible(selectedRange)
+    }
+
+    
+    
+    
+    
     
 }
 //------------------------------------------------------------

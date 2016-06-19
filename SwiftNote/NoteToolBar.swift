@@ -12,7 +12,10 @@ import UIKit
 struct NoteToolBar {
     static func createToolBarWithTarget(target: AnyObject, width: CGFloat) -> UIToolbar {
         
-        let toolBar = UIToolbar(frame: CGRectMake(0, 0, width, 44))        
+        let toolBar = UIToolbar(frame: CGRectMake(0, 0, width, 44))
+        
+        let characterCount = UIBarButtonItem()
+        characterCount.title = "poop"
         
         let spacer = UIBarButtonItem(barButtonSystemItem: .FlexibleSpace, target: nil, action: nil)
         
@@ -20,7 +23,7 @@ struct NoteToolBar {
         
         let saveButton = UIBarButtonItem(title: "Save", style: .Plain, target: target, action: #selector(NoteTemplateViewController.saveNote))
         
-        toolBar.items = [favoriteButton, spacer, saveButton]
+        toolBar.items = [favoriteButton, characterCount, spacer, saveButton]
         
         
         
