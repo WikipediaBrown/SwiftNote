@@ -40,11 +40,11 @@ class NoteTemplateViewController: UIViewController, UINavigationBarDelegate, UIT
     }
     
     
-   // override func viewWillDisappear(animated: Bool) {
-  //      NSNotificationCenter.defaultCenter().removeObserver(self, name: UIKeyboardWillShowNotification, object: self.view.window)
-  //      NSNotificationCenter.defaultCenter().removeObserver(self, name: UIKeyboardWillHideNotification, object: self.view.window)
- //   }
-//
+    override func viewWillDisappear(animated: Bool) {
+        NSNotificationCenter.defaultCenter().removeObserver(self, name: UIKeyboardWillShowNotification, object: self.view.window)
+        NSNotificationCenter.defaultCenter().removeObserver(self, name: UIKeyboardWillHideNotification, object: self.view.window)
+    }
+    
     
     // Creates UITextView
 //------------------------------------------------------------
@@ -57,6 +57,8 @@ class NoteTemplateViewController: UIViewController, UINavigationBarDelegate, UIT
         return textView
     }()
 //------------------------------------------------------------
+    
+    
    
     // This sets up the UITextView
 //------------------------------------------------------------
@@ -122,7 +124,7 @@ class NoteTemplateViewController: UIViewController, UINavigationBarDelegate, UIT
         
         if newTextView.inputAccessoryView == nil {
             
-            newTextView.inputAccessoryView = NoteToolBar.createToolBarWithTarget(self, width: self.view.frame.width)
+            newTextView.inputAccessoryView = NoteToolBar.createToolBarWithTarget(self, width: self.view.frame.width, favorited: false, characters: characterCount())
         }
         
         return true
@@ -143,6 +145,12 @@ class NoteTemplateViewController: UIViewController, UINavigationBarDelegate, UIT
     }
     //------------------------------------------------------------
     
+    
+    func characterCount() -> Int {
+        
+        let count = newTextView.text.characters.count
+        return count
+    }
     
     
     func adjustForKeyboard(notification: NSNotification) {

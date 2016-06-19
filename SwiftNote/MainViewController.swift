@@ -42,7 +42,12 @@ class MainViewController: UITableViewController {
     }
     //------------------------------------------------------------
     
-    
+    //
+    //------------------------------------------------------------
+    override func viewWillAppear(animated: Bool) {
+        tableView.reloadData()
+    }
+    //------------------------------------------------------------
 
     //------------------------------------------------------------
     func reloadTableData(notification: NSNotification) {

@@ -28,6 +28,9 @@ class MakeNoteViewController: NoteTemplateViewController {
         }
     }
     
+    
+    
+    
     override func saveNote() {
         
         if newTextView.text != "" {
