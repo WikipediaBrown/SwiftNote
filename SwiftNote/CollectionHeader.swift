@@ -21,16 +21,17 @@ class CollectionHeader: UITableViewHeaderFooterView {
     override init(reuseIdentifier: String?) {
         super.init(reuseIdentifier: reuseIdentifier)
         setupViews()
-        
+        reloadInputViews()
     }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
+    
     let collectionHeader: UILabel = {
         let label = UILabel()
-        label.text = "Sample Header"
+        label.text = "You've got \(notes!.count) notes saved"
         label.font = UIFont.boldSystemFontOfSize(14)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label

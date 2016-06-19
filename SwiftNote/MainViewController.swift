@@ -8,6 +8,7 @@
 
 import UIKit
 import RealmSwift
+import IoniconsSwift
 
 //------------------------------------------------------------
 class MainViewController: UITableViewController {
@@ -25,11 +26,12 @@ class MainViewController: UITableViewController {
 
         
         navigationItem.title = "SwiftNote"
+        
         //------------------------------------------------------------
         tableView.registerClass(NoteCellTableViewCell.self, forCellReuseIdentifier: "cellId")
         tableView.registerClass(CollectionHeader.self, forHeaderFooterViewReuseIdentifier: "headerId")
         tableView.sectionHeaderHeight = 50
-        
+        tableView.separatorStyle = .None
         //------------------------------------------------------------
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Create Note", style: .Plain, target: self, action: #selector(MainViewController.insertCell))
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Batch Insert", style: .Plain, target: self, action: #selector(MainViewController.insertBatch))
@@ -42,7 +44,7 @@ class MainViewController: UITableViewController {
     }
     //------------------------------------------------------------
     
-    //
+    
     //------------------------------------------------------------
     override func viewWillAppear(animated: Bool) {
         tableView.reloadData()
@@ -74,10 +76,10 @@ class MainViewController: UITableViewController {
             try! realm.write {
                 if notes![indexPath.row].favorited == true {
                     
-                    noteCell.favoriteButton.setImage(UIImage(named: "heart-full"), forState: UIControlState.Normal)
+                    noteCell.favoriteButton.setImage(Ionicons.IosHeart.image(35, color: secondaryHeaderColor), forState: UIControlState.Normal)
                 } else {
                     
-                    noteCell.favoriteButton.setImage(UIImage(named: "heart-empty"), forState: UIControlState.Normal)
+                    noteCell.favoriteButton.setImage(Ionicons.IosHeartOutline.image(35, color: secondaryHeaderColor), forState: UIControlState.Normal)
                     
                 }
             }
@@ -118,7 +120,6 @@ class MainViewController: UITableViewController {
                 
                 realm.delete(notes![indexPath.row])
             }
-            
             tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
         }
         swipeShare.backgroundColor = UIColor.blueColor()

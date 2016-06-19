@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Hue
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -23,6 +24,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let controller = MainViewController()
         let navigationController = UINavigationController(rootViewController: controller)
         window?.rootViewController = navigationController
+        
+        UINavigationBar.appearance().barTintColor = primaryHeaderColor
+        UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor()]
+        UINavigationBar.appearance().tintColor = accentColor
+        UIBarButtonItem.appearance().tintColor = accentColor
+        
+        UIToolbar.appearance().barTintColor = accentColor
         
         return true
     }

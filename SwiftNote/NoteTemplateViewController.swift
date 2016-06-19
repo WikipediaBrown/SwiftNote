@@ -7,10 +7,14 @@
 //
 
 import UIKit
+import IoniconsSwift
+import Hue
 
 // This class is a template for making views to view the notes in (both creating notes and viewing/editing notes)
 //------------------------------------------------------------
 class NoteTemplateViewController: UIViewController, UINavigationBarDelegate, UITextViewDelegate, UIToolbarDelegate {
+    
+    var noteIsFavorited = false
     
     
     // Called when view loads. Calls the setupTextView function and stops the view from automatically adjusting the textView insets.
@@ -18,7 +22,7 @@ class NoteTemplateViewController: UIViewController, UINavigationBarDelegate, UIT
     override func viewDidLoad() {
         
         super.viewDidLoad()
-        self.view.backgroundColor = UIColor.purpleColor()
+        self.view.backgroundColor = backgroundColor
         self.automaticallyAdjustsScrollViewInsets = false
         setupTextView()
         
@@ -28,9 +32,7 @@ class NoteTemplateViewController: UIViewController, UINavigationBarDelegate, UIT
         
         
         
-        self.view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.dismissKeyboard)))
-        self.newTextView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.dismissKeyboard)))
-        
+        self.view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.dismissKeyboard)))        
     }
 //------------------------------------------------------------
     
@@ -42,7 +44,7 @@ class NoteTemplateViewController: UIViewController, UINavigationBarDelegate, UIT
     
     override func viewWillDisappear(animated: Bool) {
         NSNotificationCenter.defaultCenter().removeObserver(self, name: UIKeyboardWillShowNotification, object: self.view.window)
-        NSNotificationCenter.defaultCenter().removeObserver(self, name: UIKeyboardWillHideNotification, object: self.view.window)
+        NSNotificationCenter.defaultCenter().removeObserver(self, name: UIKeyboardWillChangeFrameNotification, object: self.view.window)
     }
     
     
@@ -94,18 +96,18 @@ class NoteTemplateViewController: UIViewController, UINavigationBarDelegate, UIT
 
         // Add UINavigationItem Title and Prompt
         //------------------------------------------------------------
-        navBarItem.prompt = "TTTT"
-        navBarItem.title = "Jot Down Note"
+        navBarItem.prompt = ""
+        navBarItem.title = "Create Note"
         //------------------------------------------------------------
         
         // Add UINavigationItem Left Button ()
         //------------------------------------------------------------
-        //navBarItem.leftBarButtonItem = UIBarButtonItem(title: "", style:   UIBarButtonItemStyle.Plain, target: self, action: #selector(MakeNoteViewController.leftNavBarButton))
+        //navBarItem.leftBarButtonItem = UIBarButtonItem(image: Ionicons.IosCloseOutline.image(35), style: .Plain, target: self, action: #selector(MakeNoteViewController.leftNavBarButton))
         //------------------------------------------------------------
 
         // Add UINavigationItem Right Button
         //------------------------------------------------------------
-        navBarItem.rightBarButtonItem = UIBarButtonItem(title: "Exit", style:   UIBarButtonItemStyle.Plain, target: self, action: #selector(MakeNoteViewController.rightNavBarButton))
+        navBarItem.rightBarButtonItem = UIBarButtonItem(image: Ionicons.IosCloseOutline.image(35), style: .Plain, target: self, action: #selector(MakeNoteViewController.rightNavBarButton))
         //------------------------------------------------------------
         
         // Add UINavigationBar
@@ -124,7 +126,7 @@ class NoteTemplateViewController: UIViewController, UINavigationBarDelegate, UIT
         
         if newTextView.inputAccessoryView == nil {
             
-            newTextView.inputAccessoryView = NoteToolBar.createToolBarWithTarget(self, width: self.view.frame.width, favorited: false, characters: characterCount())
+            newTextView.inputAccessoryView = NoteToolBar.createToolBarWithTarget(self, width: self.view.frame.width, favorited: noteIsFavorited, characters: characterCount())
         }
         
         return true
@@ -134,14 +136,14 @@ class NoteTemplateViewController: UIViewController, UINavigationBarDelegate, UIT
     // This function is overridden by the subclassing view controller to provide different save methods
     //------------------------------------------------------------
     func saveNote() {
-        
+
     }
     //------------------------------------------------------------
     
     //This function is overridden by the subclassing view controller to toggle the notes favorite attirbute
     //------------------------------------------------------------
     func favoriteNote() {
-    
+
     }
     //------------------------------------------------------------
     
@@ -154,20 +156,17 @@ class NoteTemplateViewController: UIViewController, UINavigationBarDelegate, UIT
     
     
     func adjustForKeyboard(notification: NSNotification) {
-        let userInfo = notification.userInfo!
         
+        let userInfo = notification.userInfo!
         let keyboardScreenEndFrame = (userInfo[UIKeyboardFrameEndUserInfoKey] as! NSValue).CGRectValue()
         let keyboardViewEndFrame = view.convertRect(keyboardScreenEndFrame, fromView: view.window)
-        
         if notification.name == UIKeyboardWillHideNotification {
+            
             newTextView.contentInset = UIEdgeInsetsZero
         } else {
+            
             newTextView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: keyboardViewEndFrame.height, right: 0)
         }
-        
-        
-        //let selectedRange = newTextView.selectedRange
-        //newTextView.scrollRangeToVisible(selectedRange)
     }
 
     

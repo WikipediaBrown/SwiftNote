@@ -28,6 +28,25 @@ class MakeNoteViewController: NoteTemplateViewController {
         }
     }
     
+    override func favoriteNote() {
+        if noteIsFavorited == false {
+        
+            noteIsFavorited = true
+            print(noteIsFavorited)
+            
+            self.inputAccessoryViewController?.reloadInputViews()
+        } else {
+        
+            noteIsFavorited = false
+            print(noteIsFavorited)
+            
+            self.inputAccessoryViewController?.reloadInputViews()
+
+
+        }
+        
+    }
+    
     
     
     

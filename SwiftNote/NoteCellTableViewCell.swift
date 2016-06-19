@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import IoniconsSwift
 
 class NoteCellTableViewCell: UITableViewCell {
     
@@ -63,11 +64,11 @@ class NoteCellTableViewCell: UITableViewCell {
                 if notes![favoritePath.row].favorited == true {
                     
                     notes![favoritePath.row].favorited = false
-                    favoriteButton.setImage(UIImage(named: "heart-empty"), forState: UIControlState.Normal)
+                    favoriteButton.setImage(Ionicons.IosHeartOutline.image(35, color: secondaryHeaderColor), forState: UIControlState.Normal)
                 } else {
                     
                     notes![favoritePath.row].favorited = true
-                    favoriteButton.setImage(UIImage(named: "heart-full"), forState: UIControlState.Normal)
+                    favoriteButton.setImage(Ionicons.IosHeart.image(35, color: secondaryHeaderColor), forState: UIControlState.Normal)
                     
                 }
             }
