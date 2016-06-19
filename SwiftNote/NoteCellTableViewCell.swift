@@ -15,6 +15,8 @@ class NoteCellTableViewCell: UITableViewCell {
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: "cellid")
         setupViews()
+        
+        
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -51,6 +53,7 @@ class NoteCellTableViewCell: UITableViewCell {
         
         addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:[v0(45)]", options: NSLayoutFormatOptions(), metrics: nil, views: ["v0": favoriteButton]))
     }
+    
     
     func handleAction() {
         

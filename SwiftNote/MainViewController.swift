@@ -14,10 +14,13 @@ class MainViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
         try! realm.write {
             
-            notes = realm.objects(noteData)
+            notes = realm.objects(noteData).sorted("lastEdited", ascending: false)
         }
+        
+
         
         navigationItem.title = "SwiftNote"
         
@@ -39,7 +42,8 @@ class MainViewController: UITableViewController {
     
     
     override func viewWillAppear(animated: Bool) {
-        tableView.reloadData()
+
+        //tableView.reloadData()
     }
     
     func reloadTableData(notification: NSNotification) {
@@ -49,7 +53,6 @@ class MainViewController: UITableViewController {
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        //return notes.count
         return notes!.count
     }
     
@@ -58,6 +61,18 @@ class MainViewController: UITableViewController {
         let noteCell = tableView.dequeueReusableCellWithIdentifier("cellId", forIndexPath: indexPath) as! NoteCellTableViewCell
         
         noteCell.noteLabel.text = notes![indexPath.row].note
+        
+        
+            try! realm.write {
+                if notes![indexPath.row].favorited == true {
+                    
+                    noteCell.favoriteButton.setImage(UIImage(named: "heart-full"), forState: UIControlState.Normal)
+                } else {
+                    
+                    noteCell.favoriteButton.setImage(UIImage(named: "heart-empty"), forState: UIControlState.Normal)
+                    
+                }
+            }
         noteCell.mainViewController = self
         return noteCell
     }
@@ -104,6 +119,12 @@ class MainViewController: UITableViewController {
     //------------------------------------------------------------
     
     func insertBatch() {
+        try! realm.write {
+            
+            notes = realm.objects(noteData).sorted("favorited", ascending: false)
+            tableView.reloadData()
+
+        }
         
     }
     
