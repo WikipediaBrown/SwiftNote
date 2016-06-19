@@ -101,23 +101,6 @@ class MainViewController: UITableViewController {
     }
     //------------------------------------------------------------
     
-    func favoriteNote(cell: UITableViewCell) {
-        if let favoritePath = tableView.indexPathForCell(cell) {
-            try! realm.write {
-                if notes![favoritePath.row].favorited == true {
-                    
-                    notes![favoritePath.row].favorited = false
-                } else {
-                    
-                    notes![favoritePath.row].favorited = true
-                }
-            }
-        }
-        
-    }
-    
-    
-    
     func insertBatch() {
         
         print(notes)

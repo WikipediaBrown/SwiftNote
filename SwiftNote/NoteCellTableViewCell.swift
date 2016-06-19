@@ -30,7 +30,7 @@ class NoteCellTableViewCell: UITableViewCell {
         
     }()
     
-    let actionButton: UIButton = {
+    let favoriteButton: UIButton = {
         let button = UIButton(type: .Custom)
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setImage(UIImage(named: "heart-empty"), forState: UIControlState.Normal)
@@ -41,27 +41,33 @@ class NoteCellTableViewCell: UITableViewCell {
     
     func setupViews() {
         addSubview(noteLabel)
-        addSubview(actionButton)
+        addSubview(favoriteButton)
         
-        actionButton.addTarget(self, action: #selector(NoteCellTableViewCell.handleAction), forControlEvents: .TouchUpInside)
+        favoriteButton.addTarget(self, action: #selector(NoteCellTableViewCell.handleAction), forControlEvents: .TouchUpInside)
         
-        addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-16-[v0]-8-[v1(80)]-8-|", options: NSLayoutFormatOptions(), metrics: nil, views: ["v0": noteLabel, "v1": actionButton]))
+        addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-16-[v0]-8-[v1(45)]-8-|", options: NSLayoutFormatOptions(), metrics: nil, views: ["v0": noteLabel, "v1": favoriteButton]))
         
         addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|[v0]|", options: NSLayoutFormatOptions(), metrics: nil, views: ["v0": noteLabel]))
         
-        addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|[v0]|", options: NSLayoutFormatOptions(), metrics: nil, views: ["v0": actionButton]))
+        addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|[v0(45)]|", options: NSLayoutFormatOptions(), metrics: nil, views: ["v0": favoriteButton]))
     }
     
     func handleAction() {
-        mainViewController?.favoriteNote(self)
         
-        if actionButton.currentImage == UIImage(named: "heart-empty") {
-        
-            actionButton.setImage(UIImage(named: "heart-full"), forState: UIControlState.Normal)
-        } else {
-        
-            actionButton.setImage(UIImage(named: "heart-empty"), forState: UIControlState.Normal)
+        if let favoritePath = mainViewController!.tableView.indexPathForCell(self) {
+            
+            try! realm.write {
+                if notes![favoritePath.row].favorited == true {
+                    
+                    notes![favoritePath.row].favorited = false
+                    favoriteButton.setImage(UIImage(named: "heart-empty"), forState: UIControlState.Normal)
+                } else {
+                    
+                    notes![favoritePath.row].favorited = true
+                    favoriteButton.setImage(UIImage(named: "heart-full"), forState: UIControlState.Normal)
+                    
+                }
+            }
         }
-        
     }
 }
