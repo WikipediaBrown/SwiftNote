@@ -13,6 +13,8 @@ class noteData: Object {
     
     dynamic var note = ""
     dynamic var favorited = false
+    dynamic var createdTime = NSDate()
+    dynamic var lastEdited = NSDate()
 }
 
 

@@ -45,11 +45,11 @@ class NoteCellTableViewCell: UITableViewCell {
         
         favoriteButton.addTarget(self, action: #selector(NoteCellTableViewCell.handleAction), forControlEvents: .TouchUpInside)
         
-        addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-16-[v0]-8-[v1(45)]-8-|", options: NSLayoutFormatOptions(), metrics: nil, views: ["v0": noteLabel, "v1": favoriteButton]))
+        addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-16-[v0]-[v1(45)]-8-|", options: NSLayoutFormatOptions(), metrics: nil, views: ["v0": noteLabel, "v1": favoriteButton]))
         
         addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|[v0]|", options: NSLayoutFormatOptions(), metrics: nil, views: ["v0": noteLabel]))
         
-        addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|[v0(45)]|", options: NSLayoutFormatOptions(), metrics: nil, views: ["v0": favoriteButton]))
+        addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:[v0(45)]", options: NSLayoutFormatOptions(), metrics: nil, views: ["v0": favoriteButton]))
     }
     
     func handleAction() {

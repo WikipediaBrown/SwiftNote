@@ -26,6 +26,7 @@ class NoteDetailViewController: NoteTemplateViewController, UINavigationControll
             try! realm.write {
                 
                 notes![selectedRow!].note = newTextView.text
+                notes![selectedRow!].lastEdited = NSDate() 
             }
         } else {
             

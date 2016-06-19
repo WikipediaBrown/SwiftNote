@@ -86,6 +86,8 @@ class MainViewController: UITableViewController {
             let noteToShare = notes![indexPath.row].note
             let activityViewController = UIActivityViewController(activityItems: [noteToShare], applicationActivities: nil)
             self.presentViewController(activityViewController, animated: true, completion: nil)
+
+
         }
         let swipeDelete = UITableViewRowAction(style: .Default, title: "Delete") { (action: UITableViewRowAction, indexPath: NSIndexPath) in
             
@@ -103,7 +105,6 @@ class MainViewController: UITableViewController {
     
     func insertBatch() {
         
-        print(notes)
     }
     
     func insertCell() {

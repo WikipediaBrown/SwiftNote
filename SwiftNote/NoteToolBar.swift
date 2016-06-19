@@ -16,9 +16,13 @@ struct NoteToolBar {
         
         let spacer = UIBarButtonItem(barButtonSystemItem: .FlexibleSpace, target: nil, action: nil)
         
-        let newButton = UIBarButtonItem(title: "Save", style: UIBarButtonItemStyle.Plain, target: target, action: #selector(NoteTemplateViewController.saveNote))
+        let favoriteButton = UIBarButtonItem(image: UIImage(named: "heart-empty"), style: .Plain, target: target, action: #selector(NoteTemplateViewController.favoriteNote))
         
-        toolBar.items = [spacer, newButton]
+        let saveButton = UIBarButtonItem(title: "Save", style: .Plain, target: target, action: #selector(NoteTemplateViewController.saveNote))
+        
+        toolBar.items = [favoriteButton, spacer, saveButton]
+        
+        
         
         return toolBar
     }

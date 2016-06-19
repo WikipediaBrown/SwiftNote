@@ -114,5 +114,12 @@ class NoteTemplateViewController: UIViewController, UINavigationBarDelegate, UIT
     }
     //------------------------------------------------------------
     
+    //This function is overridden by the subclassing view controller to toggle the notes favorite attirbute
+    //------------------------------------------------------------
+    func favoriteNote() {
+    
+    }
+    //------------------------------------------------------------
+    
 }
 //------------------------------------------------------------
