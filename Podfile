@@ -6,6 +6,9 @@ use_frameworks!
 target 'SwiftNote' do
 
 pod 'RealmSwift'
+pod 'IoniconsSwift', '~> 2.1'
+pod 'Morgan'
+pod 'Hue'
 
 end
 

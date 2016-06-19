@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import IoniconsSwift
 
 struct NoteToolBar {
     static func createToolBarWithTarget(target: AnyObject, width: CGFloat) -> UIToolbar {

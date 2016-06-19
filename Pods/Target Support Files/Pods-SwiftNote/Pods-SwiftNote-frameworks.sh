@@ -84,10 +84,18 @@ strip_invalid_archs() {
 
 
 if [[ "$CONFIGURATION" == "Debug" ]]; then
+  install_framework "Pods-SwiftNote/Hue.framework"
+  install_framework "Pods-SwiftNote/IoniconsSwift.framework"
+  install_framework "Pods-SwiftNote/Morgan.framework"
   install_framework "Pods-SwiftNote/Realm.framework"
   install_framework "Pods-SwiftNote/RealmSwift.framework"
+  install_framework "Pods-SwiftNote/Walker.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
+  install_framework "Pods-SwiftNote/Hue.framework"
+  install_framework "Pods-SwiftNote/IoniconsSwift.framework"
+  install_framework "Pods-SwiftNote/Morgan.framework"
   install_framework "Pods-SwiftNote/Realm.framework"
   install_framework "Pods-SwiftNote/RealmSwift.framework"
+  install_framework "Pods-SwiftNote/Walker.framework"
 fi

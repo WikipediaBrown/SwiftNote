@@ -1,15 +1,27 @@
 PODS:
+  - Hue (1.1)
+  - IoniconsSwift (2.1.1)
+  - Morgan (0.9.1):
+    - Walker
   - Realm (1.0.1):
     - Realm/Headers (= 1.0.1)
   - Realm/Headers (1.0.1)
   - RealmSwift (1.0.1):
     - Realm (= 1.0.1)
+  - Walker (0.9.1)
 
 DEPENDENCIES:
+  - Hue
+  - IoniconsSwift (~> 2.1)
+  - Morgan
   - RealmSwift
 
 SPEC CHECKSUMS:
+  Hue: ed6781be844b58b2a38150cfd4bf24c33449faf8
+  IoniconsSwift: 1d4b89f28182f8015a7c757e64984ef3fa3d0839
+  Morgan: 9cb6cdfd5eaafcdc98af5c05620cad575ace77de
   Realm: 2e15e39d35b08abb529e212ed5d8af107b5236c8
   RealmSwift: d73ea2af08c3676dbdd5e4b669651a0f492162a4
+  Walker: 9a765e7f35adb19ce59079e26d425c1e8c463241
 
 COCOAPODS: 0.39.0
