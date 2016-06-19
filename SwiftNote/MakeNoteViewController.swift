@@ -32,7 +32,15 @@ class MakeNoteViewController: NoteTemplateViewController {
         
         if newTextView.text != "" {
             
-            notes.append(newTextView.text)
+            let newNoteToSave = noteData()
+            newNoteToSave.note = newTextView.text
+            
+            try! realm.write {
+                
+                realm.add(newNoteToSave)
+            }
+            
+            
             NSNotificationCenter.defaultCenter().postNotificationName("reload", object: nil)
         }
         

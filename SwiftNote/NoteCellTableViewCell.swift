@@ -11,7 +11,7 @@ import UIKit
 class NoteCellTableViewCell: UITableViewCell {
     
     var mainViewController: MainViewController?
-
+    
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: "cellid")
         setupViews()
@@ -27,13 +27,14 @@ class NoteCellTableViewCell: UITableViewCell {
         label.font = UIFont.boldSystemFontOfSize(14)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
-    
+        
     }()
     
     let actionButton: UIButton = {
-        let button = UIButton(type: .System)
-        button.setTitle("Delete", forState: .Normal)
+        let button = UIButton(type: .Custom)
         button.translatesAutoresizingMaskIntoConstraints = false
+        button.setImage(UIImage(named: "heart-empty"), forState: UIControlState.Normal)
+        
         return button
         
     }()
@@ -52,7 +53,15 @@ class NoteCellTableViewCell: UITableViewCell {
     }
     
     func handleAction() {
-        mainViewController?.deleteCell(self)
+        mainViewController?.favoriteNote(self)
+        
+        if actionButton.currentImage == UIImage(named: "heart-empty") {
+        
+            actionButton.setImage(UIImage(named: "heart-full"), forState: UIControlState.Normal)
+        } else {
+        
+            actionButton.setImage(UIImage(named: "heart-empty"), forState: UIControlState.Normal)
+        }
         
     }
 }

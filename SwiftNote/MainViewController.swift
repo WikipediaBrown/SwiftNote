@@ -7,12 +7,17 @@
 //
 
 import UIKit
+import RealmSwift
 
 class MainViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        
+        try! realm.write {
+            
+            notes = realm.objects(noteData)
+        }
         
         navigationItem.title = "SwiftNote"
         
@@ -31,6 +36,12 @@ class MainViewController: UITableViewController {
         
     }
     
+    
+    
+    override func viewWillAppear(animated: Bool) {
+        tableView.reloadData()
+    }
+    
     func reloadTableData(notification: NSNotification) {
         
         tableView.reloadData()
@@ -38,13 +49,15 @@ class MainViewController: UITableViewController {
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        return notes.count
+        //return notes.count
+        return notes!.count
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
         let noteCell = tableView.dequeueReusableCellWithIdentifier("cellId", forIndexPath: indexPath) as! NoteCellTableViewCell
-        noteCell.noteLabel.text = notes[indexPath.row]
+        
+        noteCell.noteLabel.text = notes![indexPath.row].note
         noteCell.mainViewController = self
         return noteCell
     }
@@ -52,7 +65,7 @@ class MainViewController: UITableViewController {
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
         let noteDetailViewController = NoteDetailViewController()
-        noteDetailViewController.note = indexPath.row
+        noteDetailViewController.selectedRow = indexPath.row
         self.navigationController?.pushViewController(noteDetailViewController, animated: true)
     }
     
@@ -61,7 +74,7 @@ class MainViewController: UITableViewController {
         return tableView.dequeueReusableHeaderFooterViewWithIdentifier("headerId")
     }
     
-//------------------------------------------------------------
+    //------------------------------------------------------------
     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         
     }
@@ -70,28 +83,40 @@ class MainViewController: UITableViewController {
         
         let swipeShare = UITableViewRowAction(style: .Normal, title: "Share") { (action: UITableViewRowAction, indexPath: NSIndexPath) in
             
-            let noteToShare = notes[indexPath.row]
+            let noteToShare = notes![indexPath.row].note
             let activityViewController = UIActivityViewController(activityItems: [noteToShare], applicationActivities: nil)
             self.presentViewController(activityViewController, animated: true, completion: nil)
         }
         let swipeDelete = UITableViewRowAction(style: .Default, title: "Delete") { (action: UITableViewRowAction, indexPath: NSIndexPath) in
             
-            notes.removeAtIndex(indexPath.row)
+            try! realm.write {
+                
+                realm.delete(notes![indexPath.row])
+            }
+            
             tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
         }
         swipeShare.backgroundColor = UIColor.blueColor()
         return [swipeDelete, swipeShare]
     }
-//------------------------------------------------------------
+    //------------------------------------------------------------
     
-    func deleteCell(cell: UITableViewCell) {
-        if let deleteionPath = tableView.indexPathForCell(cell) {
-            notes.removeAtIndex(deleteionPath.row)
-            tableView.deleteRowsAtIndexPaths([deleteionPath], withRowAnimation: .Automatic)
-            
+    func favoriteNote(cell: UITableViewCell) {
+        if let favoritePath = tableView.indexPathForCell(cell) {
+            try! realm.write {
+                if notes![favoritePath.row].favorited == true {
+                    
+                    notes![favoritePath.row].favorited = false
+                } else {
+                    
+                    notes![favoritePath.row].favorited = true
+                }
+            }
         }
         
     }
+    
+    
     
     func insertBatch() {
         

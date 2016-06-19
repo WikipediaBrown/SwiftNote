@@ -10,27 +10,32 @@ import UIKit
 
 class NoteDetailViewController: NoteTemplateViewController, UINavigationControllerDelegate {
     
-    var note: Int?
+    var selectedRow: Int?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setupTextView()
-        newTextView.text = notes[note!]
+        newTextView.text = notes![selectedRow!].note
     }
     
     override func saveNote() {
         
-        self.navigationController?.popViewControllerAnimated(true)
         if newTextView.text != "" {
             
-            notes[note!] = newTextView.text
-            NSNotificationCenter.defaultCenter().postNotificationName("reload", object: nil)
-
+            try! realm.write {
+                
+                notes![selectedRow!].note = newTextView.text
+            }
         } else {
             
-            notes.removeAtIndex(note!)
-            NSNotificationCenter.defaultCenter().postNotificationName("reload", object: nil)
+            try! realm.write {
+                
+                realm.delete(notes![selectedRow!])
+            }
+            
         }
+        
+        self.navigationController?.popViewControllerAnimated(true)
     }
 }

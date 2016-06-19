@@ -7,6 +7,15 @@
 //
 
 import Foundation
+import RealmSwift
+
+class noteData: Object {
+    
+    dynamic var note = ""
+    dynamic var favorited = false
+}
 
 
-    var notes = ["snap", "crackle", "pop", "great"]
+let realm = try! Realm()
+
+var notes: Results<noteData>?
