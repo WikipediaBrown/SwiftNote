@@ -22,7 +22,6 @@ class NoteDetailViewController: NoteTemplateViewController, UINavigationControll
             let noteList = notes![selectedRow!]
             newTextView.text = noteList.note
             isFav = noteList.favorited
-            //getFavButtonState()
         }
     }
     

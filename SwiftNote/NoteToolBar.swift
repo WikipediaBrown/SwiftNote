@@ -26,11 +26,13 @@ struct NoteToolBar {
         
         var favImage = Ionicons.IosHeartOutline.image(35, color: primaryHeaderColor)
         if favorited {
+            
             favImage = Ionicons.IosHeart.image(35, color: primaryHeaderColor)
         }
         let favoriteButton = UIBarButtonItem(image: favImage, style: .Plain, target: target, action: #selector(NoteTemplateViewController.favoriteNote))
  
         favoriteButton.tintColor = secondaryHeaderColor
+        
         
         let spacer = UIBarButtonItem(barButtonSystemItem: .FlexibleSpace, target: nil, action: nil)
         

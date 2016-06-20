@@ -150,11 +150,11 @@ class NoteTemplateViewController: UIViewController, UINavigationBarDelegate, UIT
         isFav = !isFav
         
         if isFav {
+            
             sender.image = Ionicons.IosHeart.image(35, color: primaryHeaderColor)
-            print("Favorited")
         } else {
+            
             sender.image = Ionicons.IosHeartOutline.image(35, color: primaryHeaderColor)
-            print("UnFavorited")
         }
     }
     //------------------------------------------------------------
@@ -163,12 +163,13 @@ class NoteTemplateViewController: UIViewController, UINavigationBarDelegate, UIT
         if newTextView.text != " " {
         
         characterCount(textView)
+        
         }
     }
     
     
     func characterCount(textView: UITextView) -> Int {
-        let textWithoutSpace = textView.text.stringByReplacingOccurrencesOfString(" ", withString: "", options: NSStringCompareOptions.CaseInsensitiveSearch, range: nil)
+        let textWithoutSpace = textView.text.stringByReplacingOccurrencesOfString("", withString: "", options: NSStringCompareOptions.CaseInsensitiveSearch, range: nil)
         let count = textWithoutSpace.characters.count
         NoteToolBar.characterCount.title = "\(count)"
         return count

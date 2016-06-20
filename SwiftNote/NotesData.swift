@@ -8,13 +8,16 @@
 
 import Foundation
 import RealmSwift
+import CoreLocation
 
 class noteData: Object {
     
+    dynamic var title = ""
     dynamic var note = ""
     dynamic var favorited = false
     dynamic var createdTime = NSDate()
     dynamic var lastEdited = NSDate()
+    dynamic var noteLocation = CLLocation()
 }
 
 

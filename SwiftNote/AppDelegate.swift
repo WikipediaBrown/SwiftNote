@@ -21,9 +21,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UIApplication.sharedApplication().statusBarStyle = .LightContent
 
         window = UIWindow(frame: UIScreen.mainScreen().bounds)
+        window?.backgroundColor = primaryHeaderColor
         window?.makeKeyAndVisible()
         
-        let controller = MainViewController()
+        let controller = InitialAnimatedViewController()
         let navigationController = UINavigationController(rootViewController: controller)
         window?.rootViewController = navigationController
         
