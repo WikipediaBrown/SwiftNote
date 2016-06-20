@@ -21,3 +21,5 @@ class noteData: Object {
 let realm = try! Realm()
 
 var notes: Results<noteData>?
+
+var noteIsFavorited = false

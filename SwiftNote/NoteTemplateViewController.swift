@@ -14,9 +14,6 @@ import Hue
 //------------------------------------------------------------
 class NoteTemplateViewController: UIViewController, UINavigationBarDelegate, UITextViewDelegate, UIToolbarDelegate {
     
-    var noteIsFavorited = false
-    
-    
     // Called when view loads. Calls the setupTextView function and stops the view from automatically adjusting the textView insets.
 //------------------------------------------------------------
     override func viewDidLoad() {
@@ -88,7 +85,7 @@ class NoteTemplateViewController: UIViewController, UINavigationBarDelegate, UIT
         
         // Add UINavigation Bar
         //------------------------------------------------------------
-        let navBar: UINavigationBar = UINavigationBar(frame: CGRectMake(0, 0, self.view.frame.size.width, 44))
+        let navBar: UINavigationBar = UINavigationBar(frame: CGRectMake(0, 0, self.view.frame.size.width, 64))
         let navBarItem = UINavigationItem()
         navBar.items = [navBarItem]
         navBar.delegate = self
@@ -96,7 +93,7 @@ class NoteTemplateViewController: UIViewController, UINavigationBarDelegate, UIT
 
         // Add UINavigationItem Title and Prompt
         //------------------------------------------------------------
-        navBarItem.prompt = ""
+        //navBarItem.prompt = ""
         navBarItem.title = "Create Note"
         //------------------------------------------------------------
         
@@ -125,7 +122,7 @@ class NoteTemplateViewController: UIViewController, UINavigationBarDelegate, UIT
     func textViewShouldBeginEditing(textView: UITextView) -> Bool {
         
         if newTextView.inputAccessoryView == nil {
-            
+                        
             newTextView.inputAccessoryView = NoteToolBar.createToolBarWithTarget(self, width: self.view.frame.width, favorited: noteIsFavorited, characters: characterCount())
         }
         

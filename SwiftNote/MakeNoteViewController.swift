@@ -15,6 +15,7 @@ class MakeNoteViewController: NoteTemplateViewController {
         super.viewDidLoad()
         
         setupNavBar()
+        
     }
     
     // This method is called when the left navBar button is pressed.
@@ -34,14 +35,10 @@ class MakeNoteViewController: NoteTemplateViewController {
             noteIsFavorited = true
             print(noteIsFavorited)
             
-            self.inputAccessoryViewController?.reloadInputViews()
         } else {
         
             noteIsFavorited = false
             print(noteIsFavorited)
-            
-            self.inputAccessoryViewController?.reloadInputViews()
-
 
         }
         

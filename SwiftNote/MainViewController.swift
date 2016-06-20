@@ -24,7 +24,6 @@ class MainViewController: UITableViewController {
         }
         //------------------------------------------------------------
 
-        
         navigationItem.title = "SwiftNote"
         
         //------------------------------------------------------------
