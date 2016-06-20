@@ -17,8 +17,10 @@ class MainViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        //------------------------------------------------------------
         self.navigationController?.navigationBar.hidden = false
-
+        //------------------------------------------------------------
+        
         
         //------------------------------------------------------------
         try! realm.write {
@@ -26,8 +28,10 @@ class MainViewController: UITableViewController {
             notes = realm.objects(noteData).sorted("lastEdited", ascending: false)
         }
         //------------------------------------------------------------
-
+        
+        //------------------------------------------------------------
         navigationItem.title = "SwiftNote"
+        //------------------------------------------------------------
         
         //------------------------------------------------------------
         tableView.registerClass(NoteCellTableViewCell.self, forCellReuseIdentifier: "cellId")
@@ -35,8 +39,12 @@ class MainViewController: UITableViewController {
         tableView.sectionHeaderHeight = 50
         tableView.separatorStyle = .None
         //------------------------------------------------------------
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Create Note", style: .Plain, target: self, action: #selector(MainViewController.insertCell))
-        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Batch Insert", style: .Plain, target: self, action: #selector(MainViewController.insertBatch))
+        
+        
+        //------------------------------------------------------------
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: Ionicons.IosComposeOutline.image(35), style: .Plain, target: self, action: #selector(MainViewController.showCreateNoteModal))
+        
+        navigationItem.leftBarButtonItem = UIBarButtonItem(image: Ionicons.Funnel.image(28), style: .Plain, target: self, action: #selector(MainViewController.sortNoteTable))
         //------------------------------------------------------------
         
         //------------------------------------------------------------
@@ -45,7 +53,7 @@ class MainViewController: UITableViewController {
         
     }
     //------------------------------------------------------------
-
+    
     
     
     //------------------------------------------------------------
@@ -53,7 +61,7 @@ class MainViewController: UITableViewController {
         tableView.reloadData()
     }
     //------------------------------------------------------------
-
+    
     //------------------------------------------------------------
     func reloadTableData(notification: NSNotification) {
         try! realm.write {
@@ -76,16 +84,16 @@ class MainViewController: UITableViewController {
         noteCell.noteLabel.text = notes![indexPath.row].note
         
         
-            try! realm.write {
-                if notes![indexPath.row].favorited == true {
-                    
-                    noteCell.favoriteButton.setImage(Ionicons.IosHeart.image(35, color: secondaryHeaderColor), forState: UIControlState.Normal)
-                } else {
-                    
-                    noteCell.favoriteButton.setImage(Ionicons.IosHeartOutline.image(35, color: secondaryHeaderColor), forState: UIControlState.Normal)
-                    
-                }
+        try! realm.write {
+            if notes![indexPath.row].favorited == true {
+                
+                noteCell.favoriteButton.setImage(Ionicons.IosHeart.image(35, color: secondaryHeaderColor), forState: UIControlState.Normal)
+            } else {
+                
+                noteCell.favoriteButton.setImage(Ionicons.IosHeartOutline.image(35, color: secondaryHeaderColor), forState: UIControlState.Normal)
+                
             }
+        }
         noteCell.mainViewController = self
         return noteCell
     }
@@ -114,8 +122,8 @@ class MainViewController: UITableViewController {
             let noteToShare = notes![indexPath.row].note
             let activityViewController = UIActivityViewController(activityItems: [noteToShare], applicationActivities: nil)
             self.presentViewController(activityViewController, animated: true, completion: nil)
-
-
+            
+            
         }
         let swipeDelete = UITableViewRowAction(style: .Default, title: "Delete") { (action: UITableViewRowAction, indexPath: NSIndexPath) in
             
@@ -130,18 +138,25 @@ class MainViewController: UITableViewController {
     }
     //------------------------------------------------------------
     
-    func insertBatch() {
-        try! realm.write {
+    var sorted = false
+    
+    func sortNoteTable() {
+        
+        if sorted == false {
             
             notes = realm.objects(noteData).sorted("favorited", ascending: false)
             tableView.reloadData()
-
+            sorted = true
+        } else {
+            
+            notes = realm.objects(noteData).sorted("favorited", ascending: true)
+            tableView.reloadData()
+            sorted = false
         }
-        
     }
     
     
-    func insertCell() {
+    func showCreateNoteModal() {
         
         let makeNoteViewController = MakeNoteViewController()
         makeNoteViewController.modalPresentationStyle = .OverCurrentContext

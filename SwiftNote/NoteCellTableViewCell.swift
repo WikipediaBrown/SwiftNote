@@ -63,12 +63,12 @@ class NoteCellTableViewCell: UITableViewCell {
             
             try! realm.write {
                 if notes![favoritePath.row].favorited == true {
-                    
+                    favoriteButton.setImage(Ionicons.IosHeart.image(35, color: secondaryHeaderColor), forState: UIControlState.Normal)
                     notes![favoritePath.row].favorited = false
                     favoriteButton.setImage(Ionicons.IosHeartOutline.image(35, color: secondaryHeaderColor), forState: UIControlState.Normal)
                     favoriteButton.morph()
                 } else {
-                    
+                    favoriteButton.setImage(Ionicons.IosHeartOutline.image(35, color: secondaryHeaderColor), forState: UIControlState.Normal)
                     notes![favoritePath.row].favorited = true
                     favoriteButton.setImage(Ionicons.IosHeart.image(35, color: secondaryHeaderColor), forState: UIControlState.Normal)
                     favoriteButton.morph()
