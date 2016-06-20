@@ -29,21 +29,25 @@ class NoteTemplateViewController: UIViewController, UINavigationBarDelegate, UIT
         
         
         
-        self.view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.dismissKeyboard)))        
+        self.view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.dismissKeyboard)))
+        
+        newTextView.keyboardDismissMode = .Interactive
     }
 //------------------------------------------------------------
     
+//------------------------------------------------------------
     func dismissKeyboard() {
     newTextView.resignFirstResponder()
     
     }
-    
-    
+//------------------------------------------------------------
+
+//------------------------------------------------------------
     override func viewWillDisappear(animated: Bool) {
         NSNotificationCenter.defaultCenter().removeObserver(self, name: UIKeyboardWillShowNotification, object: self.view.window)
         NSNotificationCenter.defaultCenter().removeObserver(self, name: UIKeyboardWillChangeFrameNotification, object: self.view.window)
     }
-    
+//------------------------------------------------------------
     
     // Creates UITextView
 //------------------------------------------------------------
@@ -137,7 +141,7 @@ class NoteTemplateViewController: UIViewController, UINavigationBarDelegate, UIT
     }
     //------------------------------------------------------------
     
-    //This function is overridden by the subclassing view controller to toggle the notes favorite attirbute
+    
     //------------------------------------------------------------
     
     var isFav = false
