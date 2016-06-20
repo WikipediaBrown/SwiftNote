@@ -17,6 +17,9 @@ class MainViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.navigationController?.navigationBar.hidden = false
+
+        
         //------------------------------------------------------------
         try! realm.write {
             
@@ -42,6 +45,7 @@ class MainViewController: UITableViewController {
         
     }
     //------------------------------------------------------------
+
     
     
     //------------------------------------------------------------

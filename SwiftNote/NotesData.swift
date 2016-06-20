@@ -17,7 +17,7 @@ class noteData: Object {
     dynamic var favorited = false
     dynamic var createdTime = NSDate()
     dynamic var lastEdited = NSDate()
-    dynamic var noteLocation = CLLocation()
+    dynamic var noteLocation = ""
 }
 
 

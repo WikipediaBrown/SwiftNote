@@ -21,7 +21,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UIApplication.sharedApplication().statusBarStyle = .LightContent
 
         window = UIWindow(frame: UIScreen.mainScreen().bounds)
-        window?.backgroundColor = primaryHeaderColor
+        window?.backgroundColor = primaryTranslucentColor
         window?.makeKeyAndVisible()
         
         let controller = InitialAnimatedViewController()
