@@ -23,9 +23,13 @@ struct NoteToolBar {
         characterCount.title = "\(characters)"
         characterCount.tintColor = primaryHeaderColor
         
+        var favImage = Ionicons.IosHeartOutline.image(35, color: primaryHeaderColor)
+        if favorited {
+            favImage = Ionicons.IosHeart.image(35, color: primaryHeaderColor)
+        }
         
-        let favoriteButton = UIBarButtonItem(image: Ionicons.IosHeartOutline.image(35, color: primaryHeaderColor), style: .Plain, target: target, action: #selector(NoteTemplateViewController.favoriteNote))
-        favoriteButton.tintColor = primaryHeaderColor
+        var favoriteButton = UIBarButtonItem(image: favImage, style: .Plain, target: target, action: #selector(NoteTemplateViewController.favoritedNote))
+        favoriteButton.tintColor = secondaryHeaderColor
         
         let spacer = UIBarButtonItem(barButtonSystemItem: .FlexibleSpace, target: nil, action: nil)
         

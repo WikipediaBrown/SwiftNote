@@ -29,7 +29,7 @@ class MakeNoteViewController: NoteTemplateViewController {
         }
     }
     
-    override func favoriteNote() {
+    override func favoritedNote() {
         if noteIsFavorited == false {
         
             noteIsFavorited = true

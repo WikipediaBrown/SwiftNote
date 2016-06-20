@@ -17,6 +17,13 @@ class NoteDetailViewController: NoteTemplateViewController, UINavigationControll
         
         setupTextView()
         newTextView.text = notes![selectedRow!].note
+        
+        if selectedRow != nil {
+            let noteList = notes![selectedRow!]
+            newTextView.text = noteList.note
+            isFav = noteList.favorited
+            //getFavButtonState()
+        }
     }
     
     override func saveNote() {
@@ -36,6 +43,9 @@ class NoteDetailViewController: NoteTemplateViewController, UINavigationControll
             }
             
         }
+        
+        notes![selectedRow!].favorited = isFav
+
         
         self.navigationController?.popViewControllerAnimated(true)
     }

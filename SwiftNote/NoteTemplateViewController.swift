@@ -123,7 +123,7 @@ class NoteTemplateViewController: UIViewController, UINavigationBarDelegate, UIT
         
         if newTextView.inputAccessoryView == nil {
                         
-            newTextView.inputAccessoryView = NoteToolBar.createToolBarWithTarget(self, width: self.view.frame.width, favorited: noteIsFavorited, characters: characterCount())
+            newTextView.inputAccessoryView = NoteToolBar.createToolBarWithTarget(self, width: self.view.frame.width, favorited: isFav, characters: characterCount())
         }
         
         return true
@@ -168,7 +168,19 @@ class NoteTemplateViewController: UIViewController, UINavigationBarDelegate, UIT
 
     
     
+    var isFav = false
     
+    func favoriteNote(sender: UIBarButtonItem) {
+        isFav = !isFav
+        
+        if isFav {
+            sender.image = Ionicons.IosHeart.image(35, color: primaryHeaderColor)
+            print("Favorited")
+        } else {
+            sender.image = Ionicons.IosHeartOutline.image(35, color: primaryHeaderColor)
+            print("UnFavorited")
+        }
+    }
     
     
 }
