@@ -123,7 +123,7 @@ class NoteTemplateViewController: UIViewController, UINavigationBarDelegate, UIT
         
         if newTextView.inputAccessoryView == nil {
                         
-            newTextView.inputAccessoryView = NoteToolBar.createToolBarWithTarget(self, width: self.view.frame.width, favorited: isFav, characters: characterCount())
+            newTextView.inputAccessoryView = NoteToolBar.createToolBarWithTarget(self, width: self.view.frame.width, favorited: isFav, characters: characterCount(newTextView))
         }
         
         return true
@@ -139,15 +139,34 @@ class NoteTemplateViewController: UIViewController, UINavigationBarDelegate, UIT
     
     //This function is overridden by the subclassing view controller to toggle the notes favorite attirbute
     //------------------------------------------------------------
-    func favoriteNote() {
-
+    
+    var isFav = false
+    
+    func favoriteNote(sender: UIBarButtonItem) {
+        isFav = !isFav
+        
+        if isFav {
+            sender.image = Ionicons.IosHeart.image(35, color: primaryHeaderColor)
+            print("Favorited")
+        } else {
+            sender.image = Ionicons.IosHeartOutline.image(35, color: primaryHeaderColor)
+            print("UnFavorited")
+        }
     }
     //------------------------------------------------------------
     
-    
-    func characterCount() -> Int {
+    func textViewDidChange(textView: UITextView) {
+        if newTextView.text != " " {
         
-        let count = newTextView.text.characters.count
+        characterCount(textView)
+        }
+    }
+    
+    
+    func characterCount(textView: UITextView) -> Int {
+        let textWithoutSpace = textView.text.stringByReplacingOccurrencesOfString(" ", withString: "", options: NSStringCompareOptions.CaseInsensitiveSearch, range: nil)
+        let count = textWithoutSpace.characters.count
+        NoteToolBar.characterCount.title = "\(count)"
         return count
     }
     
@@ -163,22 +182,6 @@ class NoteTemplateViewController: UIViewController, UINavigationBarDelegate, UIT
         } else {
             
             newTextView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: keyboardViewEndFrame.height, right: 0)
-        }
-    }
-
-    
-    
-    var isFav = false
-    
-    func favoriteNote(sender: UIBarButtonItem) {
-        isFav = !isFav
-        
-        if isFav {
-            sender.image = Ionicons.IosHeart.image(35, color: primaryHeaderColor)
-            print("Favorited")
-        } else {
-            sender.image = Ionicons.IosHeartOutline.image(35, color: primaryHeaderColor)
-            print("UnFavorited")
         }
     }
     

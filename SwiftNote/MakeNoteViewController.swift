@@ -29,21 +29,6 @@ class MakeNoteViewController: NoteTemplateViewController {
         }
     }
     
-    override func favoritedNote() {
-        if noteIsFavorited == false {
-        
-            noteIsFavorited = true
-            print(noteIsFavorited)
-            
-        } else {
-        
-            noteIsFavorited = false
-            print(noteIsFavorited)
-
-        }
-        
-    }
-    
     
     
     
@@ -53,7 +38,7 @@ class MakeNoteViewController: NoteTemplateViewController {
             
             let newNoteToSave = noteData()
             newNoteToSave.note = newTextView.text
-            
+            newNoteToSave.favorited = isFav
             try! realm.write {
                 
                 realm.add(newNoteToSave)

@@ -33,7 +33,8 @@ class NoteDetailViewController: NoteTemplateViewController, UINavigationControll
             try! realm.write {
                 
                 notes![selectedRow!].note = newTextView.text
-                notes![selectedRow!].lastEdited = NSDate() 
+                notes![selectedRow!].lastEdited = NSDate()
+                notes![selectedRow!].favorited = isFav
             }
         } else {
             
@@ -44,7 +45,6 @@ class NoteDetailViewController: NoteTemplateViewController, UINavigationControll
             
         }
         
-        notes![selectedRow!].favorited = isFav
 
         
         self.navigationController?.popViewControllerAnimated(true)

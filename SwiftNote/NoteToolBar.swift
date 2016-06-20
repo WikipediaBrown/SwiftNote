@@ -13,13 +13,14 @@ import Hue
 
 struct NoteToolBar {
     
+    static let characterCount = UIBarButtonItem()
+    
     static func createToolBarWithTarget(target: AnyObject, width: CGFloat, favorited: Bool, characters: Int) -> UIToolbar {
         
         let toolBar = UIToolbar(frame: CGRectMake(0, 0, width, 44))
         
         
         
-        let characterCount = UIBarButtonItem()
         characterCount.title = "\(characters)"
         characterCount.tintColor = primaryHeaderColor
         
@@ -27,8 +28,8 @@ struct NoteToolBar {
         if favorited {
             favImage = Ionicons.IosHeart.image(35, color: primaryHeaderColor)
         }
-        
-        var favoriteButton = UIBarButtonItem(image: favImage, style: .Plain, target: target, action: #selector(NoteTemplateViewController.favoritedNote))
+        var favoriteButton = UIBarButtonItem(image: favImage, style: .Plain, target: target, action: #selector(NoteTemplateViewController.favoriteNote))
+ 
         favoriteButton.tintColor = secondaryHeaderColor
         
         let spacer = UIBarButtonItem(barButtonSystemItem: .FlexibleSpace, target: nil, action: nil)

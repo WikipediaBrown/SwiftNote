@@ -22,4 +22,6 @@ let realm = try! Realm()
 
 var notes: Results<noteData>?
 
-var noteIsFavorited = false
+func preferredStatusBarStyle() -> UIStatusBarStyle {
+    return .LightContent
+}
