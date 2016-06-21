@@ -23,7 +23,7 @@ class MainViewController: UITableViewController {
         //------------------------------------------------------------
 
         //------------------------------------------------------------
-        navigationItem.title = "Husky"
+        navigationItem.title = "TwiceCream"
         //------------------------------------------------------------
         
         //navigationItem.backBarButtonItem = Ionicons.ChevronLeft.label(35)

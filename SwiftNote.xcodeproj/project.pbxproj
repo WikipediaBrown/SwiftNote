@@ -378,7 +378,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.perrisdavis.SwiftNote;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "f94a3fa1-71cc-464a-94cd-b45b0ce05982";
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -394,7 +394,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.perrisdavis.SwiftNote;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "f94a3fa1-71cc-464a-94cd-b45b0ce05982";
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

@@ -11,6 +11,5 @@ pod 'Morgan'
 pod 'Hue'
 pod 'Firebase'
 pod 'Firebase/Crash'
-pod 'Firebase/AppIndexing'
 pod 'Firebase/DynamicLinks'
 end

@@ -3,9 +3,6 @@ PODS:
     - Firebase/Core (= 3.2.1)
   - Firebase/Analytics (3.2.1):
     - FirebaseAnalytics (= 3.2.0)
-  - Firebase/AppIndexing (3.2.1):
-    - Firebase/Analytics (= 3.2.1)
-    - FirebaseAppIndexing (= 1.0.3)
   - Firebase/Core (3.2.1):
     - Firebase/Analytics (= 3.2.1)
   - Firebase/Crash (3.2.1):
@@ -19,7 +16,6 @@ PODS:
     - GoogleInterchangeUtilities (~> 1.2)
     - GoogleSymbolUtilities (~> 1.1)
     - GoogleUtilities (~> 1.3)
-  - FirebaseAppIndexing (1.0.3)
   - FirebaseCrash (1.0.6):
     - FirebaseAnalytics (~> 3.0)
     - FirebaseInstanceID (~> 1.0)
@@ -73,7 +69,6 @@ PODS:
 
 DEPENDENCIES:
   - Firebase
-  - Firebase/AppIndexing
   - Firebase/Crash
   - Firebase/DynamicLinks
   - Hue
@@ -84,7 +79,6 @@ DEPENDENCIES:
 SPEC CHECKSUMS:
   Firebase: 6c80ac28d59d06bfd9152a7b6ea17625ca93183d
   FirebaseAnalytics: 6f75b04e6bfb8e0b6e9ef298e04c24eea3b13863
-  FirebaseAppIndexing: abbefc167746ac131b4f70cb09ea98bd62c5ae30
   FirebaseCrash: 899d0abc23b411d01087094e3da24527eaecabf7
   FirebaseDynamicLinks: e7ce861fd1cd501483f4b32861380cc494b79013
   FirebaseInstanceID: d014d574053a2fe84478f12f7bae96979e7051bb
