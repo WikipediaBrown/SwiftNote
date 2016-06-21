@@ -7,23 +7,20 @@
 //
 
 import UIKit
-import IoniconsSwift
 
 class NoteDetailViewController: NoteTemplateViewController, UINavigationControllerDelegate {
     
     var selectedRow: Int?
     var selectedRowNote: String?
     var selectedRowFavorited: Bool?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setupTextView()
         newTextView.text = selectedRowNote
-        if selectedRowNote != nil {
-            
-            newTextView.text = selectedRowNote
-            isFav = selectedRowFavorited!
-        }
+        isFav = selectedRowFavorited!
+        
     }
     
     override func saveNote() {
@@ -35,21 +32,17 @@ class NoteDetailViewController: NoteTemplateViewController, UINavigationControll
                 notes![selectedRow!].note = newTextView.text
                 notes![selectedRow!].lastEdited = NSDate()
                 notes![selectedRow!].favorited = isFav
-                
             }
         } else {
             
             try! realm.write {
                 
                 realm.delete(notes![selectedRow!])
-                noteCount.shake()
             }
-            
         }
         
-
+        
         headerText()
-        NSNotificationCenter.defaultCenter().postNotificationName("reload", object: nil)
         self.navigationController?.popViewControllerAnimated(true)
     }
 }

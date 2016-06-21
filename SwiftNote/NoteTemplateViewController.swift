@@ -154,10 +154,10 @@ class NoteTemplateViewController: UIViewController, UINavigationBarDelegate, UIT
         
         if isFav {
             
-            sender.image = Ionicons.IosHeart.image(35, color: primaryHeaderColor)
+            sender.image = Ionicons.IosHeart.image(35)
         } else {
             
-            sender.image = Ionicons.IosHeartOutline.image(35, color: primaryHeaderColor)
+            sender.image = Ionicons.IosHeartOutline.image(35)
         }
     }
     //------------------------------------------------------------

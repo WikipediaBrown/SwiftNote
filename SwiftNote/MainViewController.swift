@@ -21,15 +21,9 @@ class MainViewController: UITableViewController {
         //------------------------------------------------------------
         self.navigationController?.navigationBar.hidden = false
         //------------------------------------------------------------
-        
-        
+
         //------------------------------------------------------------
-        
-        notes = realm.objects(noteData).sorted("lastEdited", ascending: false)
-        //------------------------------------------------------------
-        
-        //------------------------------------------------------------
-        navigationItem.title = "SwiftNote"
+        navigationItem.title = "Husky"
         //------------------------------------------------------------
         
         //navigationItem.backBarButtonItem = Ionicons.ChevronLeft.label(35)
@@ -55,21 +49,25 @@ class MainViewController: UITableViewController {
     }
     //------------------------------------------------------------
     
-    
+    override func viewWillAppear(animated: Bool) {
+        notes = realm.objects(noteData)
+
+
+        tableView.reloadData()
+    }
     //------------------------------------------------------------
     func reloadTableData(notification: NSNotification) {
         
-        notes = realm.objects(noteData).sorted("lastEdited", ascending: false)
         tableView.reloadData()
     }
     //------------------------------------------------------------
     
-    //------------------------------------------------------------
+    // These are the delegate methods required for the tableView
+//------------------------------------------------------------
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         return notes!.count
     }
-    
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
         let noteCell = tableView.dequeueReusableCellWithIdentifier("cellId", forIndexPath: indexPath) as! NoteCellTableViewCell
@@ -83,18 +81,19 @@ class MainViewController: UITableViewController {
         } else {
             
             noteCell.favoriteButton.setImage(Ionicons.IosHeartOutline.image(35, color: secondaryHeaderColor), forState: UIControlState.Normal)
-            
         }
         noteCell.mainViewController = self
         return noteCell
     }
+//------------------------------------------------------------
+
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
         let noteDetailViewController = NoteDetailViewController()
+        noteDetailViewController.selectedRow = indexPath.row
         noteDetailViewController.selectedRowNote = notes![indexPath.row].note
         noteDetailViewController.selectedRowFavorited = notes![indexPath.row].favorited
-        noteDetailViewController.selectedRow = indexPath.row
         self.navigationController?.pushViewController(noteDetailViewController, animated: true)
     }
     
@@ -121,17 +120,17 @@ class MainViewController: UITableViewController {
             
         }
         let swipeDelete = UITableViewRowAction(style: .Default, title: "Delete") { (action: UITableViewRowAction, indexPath: NSIndexPath) in
-            
             try! realm.write {
                 
                 realm.delete(notes![indexPath.row])
+
             }
             tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
             noteCount.text = "You've got \(notes!.count) notes saved"
             noteCount.shake()
-
+            NSNotificationCenter.defaultCenter().postNotificationName("reload", object: nil)
         }
-        swipeShare.backgroundColor = UIColor.blueColor()
+        swipeShare.backgroundColor = primaryTranslucentColor
         return [swipeDelete, swipeShare]
     }
     //------------------------------------------------------------
