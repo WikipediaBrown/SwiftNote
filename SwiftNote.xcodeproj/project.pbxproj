@@ -371,10 +371,14 @@
 			baseConfigurationReference = 9617A1FEB019DEB4294830D7 /* Pods-SwiftNote.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Perris Davis (4AM5US9G8B)";
 				INFOPLIST_FILE = SwiftNote/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.perrisdavis.SwiftNote;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "f94a3fa1-71cc-464a-94cd-b45b0ce05982";
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -383,10 +387,14 @@
 			baseConfigurationReference = 3AAA670A16A9328C7ED9E7B8 /* Pods-SwiftNote.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Perris Davis (4AM5US9G8B)";
 				INFOPLIST_FILE = SwiftNote/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.perrisdavis.SwiftNote;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "f94a3fa1-71cc-464a-94cd-b45b0ce05982";
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
