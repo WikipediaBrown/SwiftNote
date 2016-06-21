@@ -24,15 +24,15 @@ class MainViewController: UITableViewController {
         
         
         //------------------------------------------------------------
-        try! realm.write {
-            
-            notes = realm.objects(noteData).sorted("lastEdited", ascending: false)
-        }
+        
+        notes = realm.objects(noteData).sorted("lastEdited", ascending: false)
         //------------------------------------------------------------
         
         //------------------------------------------------------------
         navigationItem.title = "SwiftNote"
         //------------------------------------------------------------
+        
+        //navigationItem.backBarButtonItem = Ionicons.ChevronLeft.label(35)
         
         //------------------------------------------------------------
         tableView.registerClass(NoteCellTableViewCell.self, forCellReuseIdentifier: "cellId")
@@ -54,26 +54,16 @@ class MainViewController: UITableViewController {
         
     }
     //------------------------------------------------------------
-
     
-    //------------------------------------------------------------
-    override func viewWillAppear(animated: Bool) {
-        
-        //tableView.reloadData()
-    }
-    //------------------------------------------------------------
     
     //------------------------------------------------------------
     func reloadTableData(notification: NSNotification) {
-        //try! realm.write {
-            
-            notes = realm.objects(noteData).sorted("lastEdited", ascending: false)
-        //}
         
+        notes = realm.objects(noteData).sorted("lastEdited", ascending: false)
         tableView.reloadData()
     }
     //------------------------------------------------------------
-
+    
     //------------------------------------------------------------
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
@@ -87,14 +77,14 @@ class MainViewController: UITableViewController {
         noteCell.noteLabel.text = notes![indexPath.row].note
         
         
-            if notes![indexPath.row].favorited == true {
-                
-                noteCell.favoriteButton.setImage(Ionicons.IosHeart.image(35, color: secondaryHeaderColor), forState: UIControlState.Normal)
-            } else {
-                
-                noteCell.favoriteButton.setImage(Ionicons.IosHeartOutline.image(35, color: secondaryHeaderColor), forState: UIControlState.Normal)
-                
-            }
+        if notes![indexPath.row].favorited == true {
+            
+            noteCell.favoriteButton.setImage(Ionicons.IosHeart.image(35, color: secondaryHeaderColor), forState: UIControlState.Normal)
+        } else {
+            
+            noteCell.favoriteButton.setImage(Ionicons.IosHeartOutline.image(35, color: secondaryHeaderColor), forState: UIControlState.Normal)
+            
+        }
         noteCell.mainViewController = self
         return noteCell
     }
@@ -102,6 +92,8 @@ class MainViewController: UITableViewController {
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
         let noteDetailViewController = NoteDetailViewController()
+        noteDetailViewController.selectedRowNote = notes![indexPath.row].note
+        noteDetailViewController.selectedRowFavorited = notes![indexPath.row].favorited
         noteDetailViewController.selectedRow = indexPath.row
         self.navigationController?.pushViewController(noteDetailViewController, animated: true)
     }
@@ -136,6 +128,8 @@ class MainViewController: UITableViewController {
             }
             tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
             noteCount.text = "You've got \(notes!.count) notes saved"
+            noteCount.shake()
+
         }
         swipeShare.backgroundColor = UIColor.blueColor()
         return [swipeDelete, swipeShare]
@@ -161,9 +155,9 @@ class MainViewController: UITableViewController {
         }
     }
     //------------------------------------------------------------
-
+    
     //------------------------------------------------------------
-
+    
     func showCreateNoteModal() {
         
         let makeNoteViewController = MakeNoteViewController()
@@ -172,6 +166,6 @@ class MainViewController: UITableViewController {
         
     }
     //------------------------------------------------------------
-
+    
 }
 

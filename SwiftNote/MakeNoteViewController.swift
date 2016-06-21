@@ -48,6 +48,7 @@ class MakeNoteViewController: NoteTemplateViewController {
             NSNotificationCenter.defaultCenter().postNotificationName("reload", object: nil)
         }
         headerText()
+        noteCount.swing()
         self.dismissKeyboard()
         self.dismissViewControllerAnimated(true) {
             

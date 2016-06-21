@@ -8,6 +8,7 @@
 
 import UIKit
 import Hue
+import Firebase
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -35,6 +36,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         UIToolbar.appearance().barTintColor = accentColor
         
+        FIRApp.configure()
         return true
     }
 

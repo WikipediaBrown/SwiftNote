@@ -56,6 +56,8 @@ class NoteTemplateViewController: UIViewController, UINavigationBarDelegate, UIT
         
         let textView = UITextView()
         textView.scrollEnabled=true
+        textView.textColor = primaryHeaderColor
+        textView.font = UIFont.boldSystemFontOfSize(14)
         textView.becomeFirstResponder()
         textView.translatesAutoresizingMaskIntoConstraints = false
         return textView

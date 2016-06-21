@@ -10,5 +10,7 @@ pod 'IoniconsSwift', '~> 2.1'
 pod 'Morgan'
 pod 'Hue'
 pod 'Firebase'
+pod 'Firebase/Crash'
+pod 'Firebase/AppIndexing'
+pod 'Firebase/DynamicLinks'
 end
-
