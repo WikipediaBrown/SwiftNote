@@ -1,0 +1,24 @@
+{
+  "name": "IoniconsSwift",
+  "version": "2.0.1",
+  "license": "MIT",
+  "summary": "Ionicons for Swift and iOS",
+  "authors": {
+    "Josh Baker": "oshbaker77@gmail.com",
+    "Christophe de BORTOLI": "christophe.debortoli@gmail.com"
+  },
+  "homepage": "http://github.com/cdebortoli/IoniconsSwift",
+  "source": {
+    "git": "http://github.com/cdebortoli/IoniconsSwift",
+    "branch": "cocoapods"
+  },
+  "platforms": {
+    "ios": "8.0",
+    "osx": "10.9"
+  },
+  "source_files": "IoniconsSwift",
+  "resources": [
+    "IoniconsSwift/*.ttf"
+  ],
+  "requires_arc": true
+}

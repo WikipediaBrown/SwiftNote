@@ -9,6 +9,6 @@ pod 'RealmSwift'
 pod 'IoniconsSwift', '~> 2.1'
 pod 'Morgan'
 pod 'Hue'
-
+pod 'Firebase'
 end
 

@@ -54,13 +54,12 @@ class MainViewController: UITableViewController {
         
     }
     //------------------------------------------------------------
-    
-    
+
     
     //------------------------------------------------------------
     override func viewWillAppear(animated: Bool) {
         
-        tableView.reloadData()
+        //tableView.reloadData()
     }
     //------------------------------------------------------------
     
@@ -156,7 +155,7 @@ class MainViewController: UITableViewController {
             sorted = true
         } else {
             
-            notes = realm.objects(noteData).sorted("favorited", ascending: true)
+            notes = realm.objects(noteData).sorted("lastEdited", ascending: false)
             tableView.reloadData()
             sorted = false
         }

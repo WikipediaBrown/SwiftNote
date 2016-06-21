@@ -34,6 +34,7 @@ class NoteTemplateViewController: UIViewController, UINavigationBarDelegate, UIT
         newTextView.keyboardDismissMode = .Interactive
     }
 //------------------------------------------------------------
+
     
 //------------------------------------------------------------
     func dismissKeyboard() {

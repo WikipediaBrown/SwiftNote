@@ -46,6 +46,7 @@ class NoteDetailViewController: NoteTemplateViewController, UINavigationControll
         
 
         headerText()
+        NSNotificationCenter.defaultCenter().postNotificationName("reload", object: nil)
         self.navigationController?.popViewControllerAnimated(true)
     }
 }

@@ -28,6 +28,7 @@ class CollectionHeader: UITableViewHeaderFooterView {
         let label = UILabel()
         noteCount.text = "You've got \(notes!.count) notes saved"
         noteCount.font = UIFont.boldSystemFontOfSize(14)
+        noteCount.textColor = primaryHeaderColor
         noteCount.translatesAutoresizingMaskIntoConstraints = false
         return noteCount
         
@@ -35,7 +36,9 @@ class CollectionHeader: UITableViewHeaderFooterView {
     
     
     func setupViews() {
+        
         addSubview(collectionHeader)
+        contentView.backgroundColor = accentColor
         addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-16-[v0]|", options: NSLayoutFormatOptions(), metrics: nil, views: ["v0": collectionHeader]))
         addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|[v0]|", options: NSLayoutFormatOptions(), metrics: nil, views: ["v0": collectionHeader]))
     }

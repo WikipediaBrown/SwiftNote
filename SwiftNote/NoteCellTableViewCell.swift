@@ -28,6 +28,7 @@ class NoteCellTableViewCell: UITableViewCell {
     let noteLabel: UILabel = {
         let label = UILabel()
         label.text = "Sample Note"
+        label.textColor = primaryHeaderColor
         label.font = UIFont.boldSystemFontOfSize(14)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
