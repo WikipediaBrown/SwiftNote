@@ -22,6 +22,7 @@ class InitialAnimatedViewController: UIViewController {
         self.navigationController?.navigationBar.hidden = true
     }
     
+    
     var initialScreenLabel: UILabel = {
         var label = UILabel()
         label = Ionicons.Icecream.label(200)
@@ -32,36 +33,43 @@ class InitialAnimatedViewController: UIViewController {
     }()
     
     func setupImage() {
+        
         self.view.addSubview(initialScreenLabel)
-        
         let mainViewController = MainViewController()
-        
-        rotateView(initialScreenLabel)
-        
-        UIView.animateWithDuration(2, animations: {
-         
-         self.initialScreenLabel.transform = CGAffineTransformMakeScale(2, 2)
-         }) { (true) in
-         
-         self.navigationController?.pushViewController(mainViewController, animated: true)
-         }
-        
-        
-        
+        UIView.animateWithDuration(3, delay: 0, options: .CurveEaseIn, animations: {
+            
+            self.initialScreenLabel.transform = CGAffineTransformMakeScale(2, 2)
+            self.rotateView()
+            self.rotateView()
+            self.rotateView()
+            self.rotateView()
+            self.rotateView()
+            self.rotateView()
+            self.rotateView()
+            self.rotateView()
+            self.rotateView()
+            self.rotateView()
+            self.rotateView()
+            self.rotateView()
+            self.rotateView()
+            self.rotateView()
+            self.rotateView()
+            self.rotateView()
+            self.rotateView()
+            self.rotateView()
+            self.rotateView()
+            }) { (true) in
+                
+                self.navigationController?.pushViewController(mainViewController, animated: true)
+        }
         let viewsDictionary = ["initialScreenImage": initialScreenLabel]
         self.view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-20-[initialScreenImage]-20-|", options: NSLayoutFormatOptions(), metrics: nil, views: viewsDictionary))
         self.view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-20-[initialScreenImage]-20-|", options: NSLayoutFormatOptions(), metrics: nil, views: viewsDictionary))
     }
     
+    func rotateView() {
     
-    
-    // Rotate <targetView> indefinitely
-    private func rotateView(targetView: UIView, duration: Double = 1.0) {
-        UIView.animateWithDuration(duration, delay: 0.0, options: .CurveLinear, animations: {
-            targetView.transform = CGAffineTransformRotate(targetView.transform, CGFloat(M_PI))
-        }) { finished in
-            self.rotateView(targetView, duration: duration)
-        }
+        self.initialScreenLabel.transform = CGAffineTransformRotate(self.initialScreenLabel.transform, CGFloat((M_PI/5)))
     }
     
 }

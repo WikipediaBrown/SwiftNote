@@ -64,14 +64,16 @@ class MainViewController: UITableViewController {
     
     //------------------------------------------------------------
     func reloadTableData(notification: NSNotification) {
-        try! realm.write {
+        //try! realm.write {
             
             notes = realm.objects(noteData).sorted("lastEdited", ascending: false)
-        }
+        //}
         
         tableView.reloadData()
     }
-    
+    //------------------------------------------------------------
+
+    //------------------------------------------------------------
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         return notes!.count
@@ -84,7 +86,6 @@ class MainViewController: UITableViewController {
         noteCell.noteLabel.text = notes![indexPath.row].note
         
         
-        try! realm.write {
             if notes![indexPath.row].favorited == true {
                 
                 noteCell.favoriteButton.setImage(Ionicons.IosHeart.image(35, color: secondaryHeaderColor), forState: UIControlState.Normal)
@@ -93,7 +94,6 @@ class MainViewController: UITableViewController {
                 noteCell.favoriteButton.setImage(Ionicons.IosHeartOutline.image(35, color: secondaryHeaderColor), forState: UIControlState.Normal)
                 
             }
-        }
         noteCell.mainViewController = self
         return noteCell
     }
@@ -138,6 +138,7 @@ class MainViewController: UITableViewController {
     }
     //------------------------------------------------------------
     
+    //------------------------------------------------------------
     var sorted = false
     
     func sortNoteTable() {
@@ -154,8 +155,10 @@ class MainViewController: UITableViewController {
             sorted = false
         }
     }
-    
-    
+    //------------------------------------------------------------
+
+    //------------------------------------------------------------
+
     func showCreateNoteModal() {
         
         let makeNoteViewController = MakeNoteViewController()
@@ -163,5 +166,7 @@ class MainViewController: UITableViewController {
         self.presentViewController(makeNoteViewController, animated: true, completion: nil)
         
     }
+    //------------------------------------------------------------
+
 }
 
