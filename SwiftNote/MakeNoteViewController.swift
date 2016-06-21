@@ -24,8 +24,9 @@ class MakeNoteViewController: NoteTemplateViewController {
     // This method is called when the right navBar button is pressed.
     func rightNavBarButton() {
         
+        self.dismissKeyboard()
         self.dismissViewControllerAnimated(true) {
-            
+
         }
     }
     
@@ -44,10 +45,10 @@ class MakeNoteViewController: NoteTemplateViewController {
                 realm.add(newNoteToSave)
             }
             
-            
             NSNotificationCenter.defaultCenter().postNotificationName("reload", object: nil)
         }
-        
+        headerText()
+        self.dismissKeyboard()
         self.dismissViewControllerAnimated(true) {
             
         }

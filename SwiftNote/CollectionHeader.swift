@@ -7,21 +7,16 @@
 //
 
 import UIKit
+import Realm
+
+var noteCount = UILabel()
+
 
 class CollectionHeader: UITableViewHeaderFooterView {
-
-    /*
-    // Only override drawRect: if you perform custom drawing.
-    // An empty implementation adversely affects performance during animation.
-    override func drawRect(rect: CGRect) {
-        // Drawing code
-    }
-    */
     
     override init(reuseIdentifier: String?) {
         super.init(reuseIdentifier: reuseIdentifier)
         setupViews()
-        reloadInputViews()
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -31,10 +26,10 @@ class CollectionHeader: UITableViewHeaderFooterView {
     
     let collectionHeader: UILabel = {
         let label = UILabel()
-        label.text = "You've got \(notes!.count) notes saved"
-        label.font = UIFont.boldSystemFontOfSize(14)
-        label.translatesAutoresizingMaskIntoConstraints = false
-        return label
+        noteCount.text = "You've got \(notes!.count) notes saved"
+        noteCount.font = UIFont.boldSystemFontOfSize(14)
+        noteCount.translatesAutoresizingMaskIntoConstraints = false
+        return noteCount
         
     }()
     

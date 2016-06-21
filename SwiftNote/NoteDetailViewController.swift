@@ -45,7 +45,7 @@ class NoteDetailViewController: NoteTemplateViewController, UINavigationControll
         }
         
 
-        
+        headerText()
         self.navigationController?.popViewControllerAnimated(true)
     }
 }

@@ -171,8 +171,13 @@ class NoteTemplateViewController: UIViewController, UINavigationBarDelegate, UIT
     func characterCount(textView: UITextView) -> Int {
         let textWithoutSpace = textView.text.stringByReplacingOccurrencesOfString("", withString: "", options: NSStringCompareOptions.CaseInsensitiveSearch, range: nil)
         let count = textWithoutSpace.characters.count
-        NoteToolBar.characterCount.title = "\(count)"
+        NoteToolBar.characterCount.title = "\(count) characters"
         return count
+    }
+    
+    func headerText() {
+    
+        noteCount.text = "You've got \(notes!.count) notes saved"
     }
     
     

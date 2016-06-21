@@ -21,7 +21,7 @@ struct NoteToolBar {
         
         
         
-        characterCount.title = "\(characters)"
+        characterCount.title = "\(characters) characters"
         characterCount.tintColor = primaryHeaderColor
         
         var favImage = Ionicons.IosHeartOutline.image(35, color: primaryHeaderColor)

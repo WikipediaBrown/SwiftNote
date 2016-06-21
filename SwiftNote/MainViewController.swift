@@ -9,6 +9,7 @@
 import UIKit
 import RealmSwift
 import IoniconsSwift
+import Morgan
 
 //------------------------------------------------------------
 class MainViewController: UITableViewController {
@@ -58,6 +59,7 @@ class MainViewController: UITableViewController {
     
     //------------------------------------------------------------
     override func viewWillAppear(animated: Bool) {
+        
         tableView.reloadData()
     }
     //------------------------------------------------------------
@@ -107,7 +109,9 @@ class MainViewController: UITableViewController {
     
     override func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         
-        return tableView.dequeueReusableHeaderFooterViewWithIdentifier("headerId")
+        let headerCell = tableView.dequeueReusableHeaderFooterViewWithIdentifier("headerId")
+        
+        return headerCell
     }
     
     //------------------------------------------------------------
@@ -132,6 +136,7 @@ class MainViewController: UITableViewController {
                 realm.delete(notes![indexPath.row])
             }
             tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
+            noteCount.text = "You've got \(notes!.count) notes saved"
         }
         swipeShare.backgroundColor = UIColor.blueColor()
         return [swipeDelete, swipeShare]
@@ -142,6 +147,7 @@ class MainViewController: UITableViewController {
     var sorted = false
     
     func sortNoteTable() {
+        
         
         if sorted == false {
             
