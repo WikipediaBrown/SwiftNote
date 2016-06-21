@@ -131,6 +131,7 @@
 				7BF46A491D0405E200AA1EF8 /* Resources */,
 				CB47C058D29F750D4D66954F /* Embed Pods Frameworks */,
 				D16D11989A615E6EF7313FAC /* Copy Pods Resources */,
+				7B6A42581D196862009BD91A /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -203,6 +204,19 @@
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
+		};
+		7B6A42581D196862009BD91A /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Replace this path with the path to the key you just downloaded\nJSON_FILE=~/Documents/Unknown\n\n# Replace this with the GOOGLE_APP_ID from your GoogleService-Info.plist file\nGOOGLE_APP_ID=1:34556225978:ios:dccbe8e2ba3773b3\n\ndefaults write com.google.SymbolUpload version -integer 1   # creates file if it does not exist\nJSON=$(cat \"${JSON_FILE}\")\n/usr/bin/plutil -replace \"app_${GOOGLE_APP_ID//:/_}\" -json \"${JSON}\" \"$HOME/Library/Preferences/com.google.SymbolUpload.plist\"\n\"${PODS_ROOT}\"/FirebaseCrash/upload-sym";
 		};
 		CB47C058D29F750D4D66954F /* Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
