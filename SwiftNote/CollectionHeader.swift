@@ -25,7 +25,6 @@ class CollectionHeader: UITableViewHeaderFooterView {
     
     
     let collectionHeader: UILabel = {
-        let label = UILabel()
         noteCount.text = "You've got \(notes!.count) notes saved"
         noteCount.font = UIFont.boldSystemFontOfSize(14)
         noteCount.textColor = primaryHeaderColor
