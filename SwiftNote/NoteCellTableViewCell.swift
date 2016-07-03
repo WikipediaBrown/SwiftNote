@@ -29,6 +29,7 @@ class NoteCellTableViewCell: UITableViewCell {
         let label = UILabel()
         label.text = "Sample Note"
         label.textColor = primaryHeaderColor
+        label.numberOfLines = 2
         label.font = UIFont.boldSystemFontOfSize(14)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -67,12 +68,12 @@ class NoteCellTableViewCell: UITableViewCell {
                     favoriteButton.setImage(Ionicons.IosHeart.image(35, color: secondaryHeaderColor), forState: UIControlState.Normal)
                     notes![favoritePath.row].favorited = false
                     favoriteButton.setImage(Ionicons.IosHeartOutline.image(35, color: secondaryHeaderColor), forState: UIControlState.Normal)
-                    favoriteButton.morph()
+                    favoriteButton.swing()
                 } else {
                     favoriteButton.setImage(Ionicons.IosHeartOutline.image(35, color: secondaryHeaderColor), forState: UIControlState.Normal)
                     notes![favoritePath.row].favorited = true
                     favoriteButton.setImage(Ionicons.IosHeart.image(35, color: secondaryHeaderColor), forState: UIControlState.Normal)
-                    favoriteButton.morph()
+                    favoriteButton.swing()
 
                     
                 }

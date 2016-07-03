@@ -35,9 +35,10 @@ class MakeNoteViewController: NoteTemplateViewController {
     
     override func saveNote() {
         
-        if newTextView.text != "" {
+        if newTextField.text != "" {
             
             let newNoteToSave = noteData()
+            newNoteToSave.title = newTextField.text!
             newNoteToSave.note = newTextView.text
             newNoteToSave.favorited = isFav
             try! realm.write {

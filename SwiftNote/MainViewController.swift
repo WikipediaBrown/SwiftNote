@@ -62,6 +62,39 @@ class MainViewController: UITableViewController {
     }
     //------------------------------------------------------------
     
+    
+    // This creates an attributed string for the UITableViewCells
+//------------------------------------------------------------
+    func makeAttributedString(title title: String, date: NSDate) -> NSAttributedString {
+        
+        let dateFormatter = NSDateFormatter()
+        let timeFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = "EEEE, MMMM d"
+        timeFormatter.dateFormat = "h:m:ss a"
+        let underText = "\(dateFormatter.stringFromDate(date)) at \(timeFormatter.stringFromDate(date))"
+        
+        
+        
+        let titleAttributes = [
+            NSFontAttributeName: UIFont.preferredFontForTextStyle(UIFontTextStyleHeadline),
+        ]
+        
+        let subtitleAttributes = [
+            NSFontAttributeName: UIFont.preferredFontForTextStyle(UIFontTextStyleFootnote),
+            NSForegroundColorAttributeName: accentColor
+        ]
+        
+        let titleString = NSMutableAttributedString(string: "\(title)\n", attributes: titleAttributes)
+        let subtitleString = NSAttributedString(string: "\(underText)", attributes: subtitleAttributes)
+        
+        titleString.appendAttributedString(subtitleString)
+        
+        return titleString
+    }
+//------------------------------------------------------------
+    
+    
+    
     // These are the delegate methods required for the tableView
 //------------------------------------------------------------
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -72,7 +105,8 @@ class MainViewController: UITableViewController {
         
         let noteCell = tableView.dequeueReusableCellWithIdentifier("cellId", forIndexPath: indexPath) as! NoteCellTableViewCell
         
-        noteCell.noteLabel.text = notes![indexPath.row].note
+        noteCell.noteLabel.attributedText = makeAttributedString(title: notes![indexPath.row].title, date: notes![indexPath.row].createdTime)
+            //notes![indexPath.row].note
         
         
         if notes![indexPath.row].favorited == true {
@@ -92,6 +126,7 @@ class MainViewController: UITableViewController {
         
         let noteDetailViewController = NoteDetailViewController()
         noteDetailViewController.selectedRow = indexPath.row
+        noteDetailViewController.selectedRowTitle = notes![indexPath.row].title
         noteDetailViewController.selectedRowNote = notes![indexPath.row].note
         noteDetailViewController.selectedRowFavorited = notes![indexPath.row].favorited
         self.navigationController?.pushViewController(noteDetailViewController, animated: true)

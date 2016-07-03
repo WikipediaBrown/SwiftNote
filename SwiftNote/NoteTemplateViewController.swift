@@ -12,7 +12,7 @@ import Hue
 
 // This class is a template for making views to view the notes in (both creating notes and viewing/editing notes)
 //------------------------------------------------------------
-class NoteTemplateViewController: UIViewController, UINavigationBarDelegate, UITextViewDelegate, UIToolbarDelegate {
+class NoteTemplateViewController: UIViewController, UINavigationBarDelegate, UITextViewDelegate, UIToolbarDelegate, UITextFieldDelegate {
     
     // Called when view loads. Calls the setupTextView function and stops the view from automatically adjusting the textView insets.
 //------------------------------------------------------------
@@ -64,8 +64,20 @@ class NoteTemplateViewController: UIViewController, UINavigationBarDelegate, UIT
     }()
 //------------------------------------------------------------
     
+// Creates UITextField
+//------------------------------------------------------------
+    let newTextField: UITextField = {
+
+        let textField = UITextField()
+        textField.textColor = secondaryHeaderColor
+        textField.backgroundColor = UIColor.whiteColor()
+        textField.textAlignment = .Center
+        textField.placeholder = "name your note"
+        textField.translatesAutoresizingMaskIntoConstraints = false
+        return textField
+    }()
+//------------------------------------------------------------
     
-   
     // This sets up the UITextView
 //------------------------------------------------------------
     func setupTextView() {
@@ -75,13 +87,19 @@ class NoteTemplateViewController: UIViewController, UINavigationBarDelegate, UIT
         newTextView.delegate = self
         self.view.addSubview(newTextView)
         //------------------------------------------------------------
-
         
+        // Add UITextField
+        //------------------------------------------------------------
+        newTextField.delegate = self
+        self.view.addSubview(newTextField)
+        //------------------------------------------------------------
+
         // Add Text View Constrainsts
         //------------------------------------------------------------
-        let viewsDictionary = ["newTextView": newTextView]
+        let viewsDictionary = ["newTextView": newTextView, "newTextField": newTextField]
         self.view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-20-[newTextView]-20-|", options: NSLayoutFormatOptions(), metrics: nil, views: viewsDictionary))
-        self.view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-67-[newTextView]-20-|", options: NSLayoutFormatOptions(), metrics: nil, views: viewsDictionary))
+        self.view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-20-[newTextField]-20-|", options: NSLayoutFormatOptions(), metrics: nil, views: viewsDictionary))
+        self.view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-67-[newTextField]-[newTextView]-20-|", options: NSLayoutFormatOptions(), metrics: nil, views: viewsDictionary))
         //------------------------------------------------------------
     }
 //------------------------------------------------------------
@@ -128,10 +146,16 @@ class NoteTemplateViewController: UIViewController, UINavigationBarDelegate, UIT
     //------------------------------------------------------------
     func textViewShouldBeginEditing(textView: UITextView) -> Bool {
         
-        if newTextView.inputAccessoryView == nil {
-                        
-            newTextView.inputAccessoryView = NoteToolBar.createToolBarWithTarget(self, width: self.view.frame.width, favorited: isFav, characters: characterCount(newTextView))
-        }
+        
+        newTextView.inputAccessoryView = NoteToolBar.createToolBarWithTarget(self, width: self.view.frame.width, favorited: isFav, characters: characterCount(newTextView))
+        return true
+    }
+    
+    func textFieldShouldBeginEditing(textField: UITextField) -> Bool {
+        
+        
+        newTextField.inputAccessoryView = NoteToolBar.createToolBarWithTarget(self, width: self.view.frame.width, favorited: isFav, characters: characterCount(newTextView))
+        
         
         return true
     }
@@ -197,6 +221,8 @@ class NoteTemplateViewController: UIViewController, UINavigationBarDelegate, UIT
             newTextView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: keyboardViewEndFrame.height, right: 0)
         }
     }
+    
+    
     
     
 }
