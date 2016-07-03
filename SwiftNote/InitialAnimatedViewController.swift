@@ -36,7 +36,7 @@ class InitialAnimatedViewController: UIViewController {
         
         self.view.addSubview(initialScreenLabel)
         let mainViewController = MainViewController()
-        UIView.animateWithDuration(3, delay: 0, options: .CurveEaseIn, animations: {
+        UIView.animateWithDuration(2, delay: 0, options: .CurveEaseIn, animations: {
             
             self.initialScreenLabel.transform = CGAffineTransformMakeScale(2, 2)
             self.rotateView()

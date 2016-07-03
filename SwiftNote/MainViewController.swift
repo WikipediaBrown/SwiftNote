@@ -154,9 +154,7 @@ class MainViewController: UITableViewController {
     
     // This section sets up swipe to share/delete in the table view.
     //------------------------------------------------------------
-    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-        
-    }
+    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {}
     override func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]? {
         
         let swipeShare = UITableViewRowAction(style: .Normal, title: "Share") { (action: UITableViewRowAction, indexPath: NSIndexPath) in
@@ -204,7 +202,6 @@ class MainViewController: UITableViewController {
     
     // This function is claled when the create note button is pressed in the navigation bar.
     //------------------------------------------------------------
-    
     func showCreateNoteModal() {
         
         let makeNoteViewController = MakeNoteViewController()
