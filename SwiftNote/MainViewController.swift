@@ -35,7 +35,6 @@ class MainViewController: UITableViewController {
         tableView.separatorStyle = .None
         //------------------------------------------------------------
         
-        
         //------------------------------------------------------------
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: Ionicons.IosComposeOutline.image(35), style: .Plain, target: self, action: #selector(MainViewController.showCreateNoteModal))
         
@@ -77,6 +76,8 @@ class MainViewController: UITableViewController {
         
         let titleAttributes = [
             NSFontAttributeName: UIFont.preferredFontForTextStyle(UIFontTextStyleHeadline),
+            NSForegroundColorAttributeName: primaryHeaderColor
+
         ]
         
         let subtitleAttributes = [

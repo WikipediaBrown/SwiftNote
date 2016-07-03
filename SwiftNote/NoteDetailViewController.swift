@@ -24,8 +24,10 @@ class NoteDetailViewController: NoteTemplateViewController, UINavigationControll
         newTextView.text = selectedRowNote
         isFav = selectedRowFavorited!
         
-        //navigationItem.leftBarButtonItem = UIBarButtonItem(image: Ionicons.ArrowLeftC.image(35), style: .Plain, target: self, action: nil)
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Delete", style: .Plain, target: self, action: #selector(deleteButton))
+        navigationItem.leftBarButtonItem = UIBarButtonItem(image: Ionicons.ArrowLeftC.image(35), style: .Plain, target: self, action: #selector(backButton))
+        
+        //navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Delete", style: .Plain, target: self, action: #selector(deleteButton))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: Ionicons.IosTrashOutline.image(35), style: .Plain, target: self, action: #selector(deleteButton))
         navigationItem.rightBarButtonItem?.tintColor = UIColor.redColor()
     }
     
@@ -42,6 +44,12 @@ class NoteDetailViewController: NoteTemplateViewController, UINavigationControll
         
         headerText()
         self.navigationController?.popViewControllerAnimated(true)
+    }
+    
+    func backButton() {
+    
+        self.navigationController?.popViewControllerAnimated(true)
+
     }
     
     func deleteButton() {

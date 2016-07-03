@@ -26,7 +26,7 @@ class MakeNoteViewController: NoteTemplateViewController {
         
         self.dismissKeyboard()
         self.dismissViewControllerAnimated(true) {
-
+            
         }
     }
     
@@ -35,19 +35,18 @@ class MakeNoteViewController: NoteTemplateViewController {
     
     override func saveNote() {
         
-        if newTextField.text != "" {
+        
+        let newNoteToSave = noteData()
+        newNoteToSave.title = newTextField.text!
+        newNoteToSave.note = newTextView.text
+        newNoteToSave.favorited = isFav
+        try! realm.write {
             
-            let newNoteToSave = noteData()
-            newNoteToSave.title = newTextField.text!
-            newNoteToSave.note = newTextView.text
-            newNoteToSave.favorited = isFav
-            try! realm.write {
-                
-                realm.add(newNoteToSave)
-            }
-            
-            NSNotificationCenter.defaultCenter().postNotificationName("reload", object: nil)
+            realm.add(newNoteToSave)
         }
+        
+        NSNotificationCenter.defaultCenter().postNotificationName("reload", object: nil)
+        
         headerText()
         noteCount.swing()
         self.dismissKeyboard()

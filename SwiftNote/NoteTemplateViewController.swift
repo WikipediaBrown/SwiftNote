@@ -66,12 +66,14 @@ class NoteTemplateViewController: UIViewController, UINavigationBarDelegate, UIT
     
 // Creates UITextField
 //------------------------------------------------------------
-    let newTextField: UITextField = {
+    let newTextField: TitleTextField = {
 
-        let textField = UITextField()
+        let textField = TitleTextField()
         textField.textColor = secondaryHeaderColor
         textField.backgroundColor = UIColor.whiteColor()
         textField.textAlignment = .Center
+        textField.layer.borderColor = secondaryHeaderColor.CGColor
+        textField.font = UIFont.boldSystemFontOfSize(45)
         textField.placeholder = "name your note"
         textField.translatesAutoresizingMaskIntoConstraints = false
         return textField
