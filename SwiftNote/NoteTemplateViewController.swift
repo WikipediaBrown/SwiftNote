@@ -73,7 +73,7 @@ class NoteTemplateViewController: UIViewController, UINavigationBarDelegate, UIT
         textField.backgroundColor = UIColor.whiteColor()
         textField.textAlignment = .Center
         textField.font = UIFont.boldSystemFontOfSize(45)
-        textField.attributedPlaceholder = NSAttributedString(string:"name your note", attributes:[NSForegroundColorAttributeName: backgroundColor])
+        textField.attributedPlaceholder = NSAttributedString(string:"name your note", attributes:[NSForegroundColorAttributeName: backgroundColor, NSFontAttributeName: UIFont.preferredFontForTextStyle(UIFontTextStyleTitle1)])
         textField.tintColor = primaryHeaderColor
         textField.translatesAutoresizingMaskIntoConstraints = false
         return textField
