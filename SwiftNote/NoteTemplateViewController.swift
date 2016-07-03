@@ -57,6 +57,7 @@ class NoteTemplateViewController: UIViewController, UINavigationBarDelegate, UIT
         textView.scrollEnabled=true
         textView.textColor = primaryHeaderColor
         textView.font = UIFont.boldSystemFontOfSize(14)
+        textView.tintColor = secondaryHeaderColor
         textView.becomeFirstResponder()
         textView.translatesAutoresizingMaskIntoConstraints = false
         return textView
@@ -71,9 +72,9 @@ class NoteTemplateViewController: UIViewController, UINavigationBarDelegate, UIT
         textField.textColor = secondaryHeaderColor
         textField.backgroundColor = UIColor.whiteColor()
         textField.textAlignment = .Center
-        textField.layer.borderColor = secondaryHeaderColor.CGColor
         textField.font = UIFont.boldSystemFontOfSize(45)
-        textField.placeholder = "name your note"
+        textField.attributedPlaceholder = NSAttributedString(string:"name your note", attributes:[NSForegroundColorAttributeName: backgroundColor])
+        textField.tintColor = primaryHeaderColor
         textField.translatesAutoresizingMaskIntoConstraints = false
         return textField
     }()

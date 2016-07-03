@@ -37,7 +37,7 @@ class InitialAnimatedViewController: UIViewController {
     // This sets up the image and its animation then pushes the main view controller onto the stack.
     //------------------------------------------------------------
     func setupImage() {
-
+        
         self.view.addSubview(initialScreenLabel)
         let mainViewController = MainViewController()
         UIView.animateWithDuration(2, delay: 0, options: .CurveEaseIn, animations: {
@@ -61,9 +61,9 @@ class InitialAnimatedViewController: UIViewController {
             self.rotateView()
             self.rotateView()
             self.rotateView()
-            }) { (true) in
-                
-                self.navigationController?.pushViewController(mainViewController, animated: true)
+        }) { (true) in
+            
+            self.navigationController?.pushViewController(mainViewController, animated: true)
         }
         let viewsDictionary = ["initialScreenImage": initialScreenLabel]
         self.view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-20-[initialScreenImage]-20-|", options: NSLayoutFormatOptions(), metrics: nil, views: viewsDictionary))
@@ -74,7 +74,7 @@ class InitialAnimatedViewController: UIViewController {
     // This funciton rotates the image 20% of a circle.
     //------------------------------------------------------------
     func rotateView() {
-    
+        
         self.initialScreenLabel.transform = CGAffineTransformRotate(self.initialScreenLabel.transform, CGFloat((M_PI/5)))
     }
     //------------------------------------------------------------

@@ -83,12 +83,11 @@ class MainViewController: UITableViewController {
         let titleAttributes = [
             NSFontAttributeName: UIFont.preferredFontForTextStyle(UIFontTextStyleHeadline),
             NSForegroundColorAttributeName: primaryHeaderColor
-            
         ]
         
         let subtitleAttributes = [
             NSFontAttributeName: UIFont.preferredFontForTextStyle(UIFontTextStyleFootnote),
-            NSForegroundColorAttributeName: accentColor
+            NSForegroundColorAttributeName: primaryTranslucentColor
         ]
         
         let titleString = NSMutableAttributedString(string: "\(title)\n", attributes: titleAttributes)
